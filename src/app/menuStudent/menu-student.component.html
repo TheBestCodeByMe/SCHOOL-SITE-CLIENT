@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Home - Brand</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+  <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+</head>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="72">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+  <div class="container"><a class="navbar-brand" href="menuStudent" style="font-size: 18px;">Личная страница обучающегося</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" href="updateUsers" style="font-size: 12px;line-height: 18px;">Редактировать<br>Личные данные</a></li>
+        <li class="nav-item mx-0 mx-lg-1" style="font-size: 12px;line-height: 18px;"><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" href="diary">Дневник</a><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" (click)="exit()">Выход</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" href="schedule" style="font-size: 12px;line-height: 18px;">Расписание</a><a class="nav-link py-3 px-0 px-lg-3 rounded" href="dataAnalytics" style="font-size: 12px;line-height: 18px;">Аналитика данных</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="imgSt text-center text-white bg-primary masthead">
+  <div class="container"><img class="img-fluid d-block mx-auto mb-5" src="assets/img/profile.png">
+    <h1 style="height: 19px;">{{fioPupil}}</h1>
+    <br> <br> <br>
+    <hr class="star-light">
+    <h2 class="font-weight-light mb-0" style="height: 17.6px;margin: -24px;">Ученик {{className}} класса</h2>
+  </div>
+</header>
+<section id="contact">
+  <div class="container">
+    <h2 class="text-uppercase text-center text-secondary mb-0">Родители</h2>
+    <hr class="star-dark mb-5">
+    <h2 class="font-weight-light mb-0"></h2>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ФИО мамы</th>
+        <th>ФИО папы</th>
+        <th>Email ученика</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr></tr>
+      <tr>
+        <td>{{fioMom}}</td>
+        <td>{{fioDad}}</td>
+        <td>{{email}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="text-center text-white copyright py-4">
+  <div class="container"><small>Колосович Ульяна©&nbsp;Brand 2022</small></div>
+</div>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/freelancer.js"></script>
+</body>
+
+</html>

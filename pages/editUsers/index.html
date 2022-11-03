@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RegPupil</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <section class="register-photo">
+        <div class="form-container">
+            <form method="post" style="padding: 7px 60px;margin: 0px;height: 658.4px;">
+                <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Регистрация ученика</strong></h2>
+                <div class="mb-3"></div><input class="form-control" type="email" name="name" placeholder="Имя" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="lastname" placeholder="Фамилия" style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="patronymic" placeholder="Отчество" style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20"><small style="margin-top: 0px;margin-right: 0px;height: 0px;padding: 0px;width: 0px;">Введите дату рождения</small><input class="form-control" type="date" style="margin-top: 17px;" name="dateOfBirth"><input class="form-control" type="email" name="personalCheck" style="margin-top: 19px;" minlength="1" maxlength="25" placeholder="Введите номер личного счета"><input class="form-control" type="text" style="padding-top: 6px;margin-top: 13px;padding-left: 12px;" name="txtFIOMom" placeholder="Введите ФИО мамы через пробел" minlength="3" maxlength="245"><input class="form-control" type="text" style="margin-top: 18px;" name="txtFIODad" placeholder="Введите ФИО папы через пробел" minlength="3" maxlength="245"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationStudent">Зарегистрировать ученика</button>
+            </form>
+        </div>
+    </section>
+    <section class="register-photo">
+        <div class="form-container">
+            <form method="post" style="padding: 7px 60px;margin: 0px;height: 658.4px;">
+                <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Регистрация учителя</strong></h2>
+                <div class="mb-3"></div><input class="form-control" type="email" name="nameTeacher" placeholder="Имя" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="lastnameTeacher" placeholder="Фамилия" style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="patronymicTeacher" placeholder="Отчество" style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="emailTeacher" style="margin-top: 19px;" minlength="1" maxlength="25" placeholder="Введите email"><input class="form-control" type="text" style="padding-top: 6px;margin-top: 13px;padding-left: 12px;" name="txtQualification" placeholder="Введите квалификацию преподавателя" minlength="3" maxlength="245"><input class="form-control" type="text" style="margin-top: 18px;" name="txtPosition" placeholder="Введите должность: учитель, директор, зам.директора" minlength="3" maxlength="245"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationTeacher">Зарегистрировать учителя</button>
+            </form>
+        </div>
+    </section>
+    <section class="register-photo">
+        <div class="form-container">
+            <form method="post" style="padding: 7px 60px;margin: 0px;height: 286.4px;">
+                <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Добавление новых предметов</strong></h2>
+                <div class="mb-3"></div><input class="form-control" type="email" name="subjectForAdd" placeholder="Укажите предмет для добавления" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="addSubject">Добавить предмет</button>
+            </form>
+        </div>
+    </section>
+    <section class="register-photo">
+        <div class="form-container">
+            <form method="post" style="padding: 7px 60px;margin: 0px;height: 658.4px;">
+                <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Расписание</strong></h2>
+                <div class="mb-3"></div><input class="form-control" type="email" name="classForShedule" placeholder="Введите класс в формате &quot;11 А&quot;" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="3" maxlength="4"><input class="form-control" type="email" name="subjectForShedule" placeholder="Введите предмет" style="margin-top: 5px;width: 349.0px;" minlength="1" maxlength="20"><small class="form-text">Введите дату занятия.</small><input class="form-control" type="date" name="dateSubject" style="margin-top: 4px;"><input class="form-control" type="email" name="weekDayForShedule" style="margin-top: 9px;" minlength="1" maxlength="25" placeholder="Введите день недели"><input class="form-control" type="number" name="lessonID" min="1" max="11" placeholder="Введите номер урока в расписании" style="margin-top: 12px;"><input class="form-control" type="number" name="weekDay" placeholder="Введите день недели по счёту" min="1" max="6" style="margin-top: 11px;"><input class="form-control" type="text" placeholder="Введите время занятия, напимер, &quot;с 12:20 до 15:50&quot;" name="lessonTime" style="margin-top: 13px;"><input class="form-control" type="text" style="margin-top: 14px;" placeholder="Введите ФИО преподавателя через пробел" name="FIOTeacherForShedule"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="addShedule">Добавление расписания</button>
+            </form>
+        </div>
+        <section class="register-photo">
+            <div class="form-container">
+                <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+                    <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Регистрация классов и закрепление преподавателей за ними</strong></h2>
+                    <div class="mb-3"></div><input class="form-control" type="email" name="classForRegistrationForClass" placeholder="Имя преподавателя" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="lastnameTeacherForClass" placeholder="Фамилия преподавателя" style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="patronymicTeacherForClass" placeholder="Отчество преподавателя" style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="classForAdd" style="margin-top: 19px;" minlength="1" maxlength="25" placeholder="Введите класс в формате &quot;11 А&quot;"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationClass">Зарегистрировать класс</button>
+                </form>
+            </div>
+            <section class="register-photo">
+                <div class="form-container">
+                    <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+                        <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Блокировка и удаление пользователей</strong></h2>
+                        <div class="mb-3"></div><input class="form-control" type="email" name="NameForBlockUnblock" placeholder="Имя" style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="lastnameForBlockUnblock" placeholder="Фамилия" style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;" minlength="1" maxlength="20"><input class="form-control" type="email" name="patronymicForBlockUnblock" placeholder="Отчество" style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20"><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="blockUser">Заблокировать пользователя</button><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="unblockUser">Разблокировать пользователя</button><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="deleteUser">Удалить пользователя</button>
+                    </form>
+                </div>
+            </section>
+            <section class="register-photo">
+                <div class="form-container">
+                    <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+                        <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Просмотр пользователей</strong></h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Логин пользователя</th>
+                                        <th>Пароль пользователя</th>
+                                        <th>Роль</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3"></div><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="updateTableUser">Обновить</button>
+                    </form>
+                </div>
+            </section>
+            <section class="register-photo">
+                <div class="form-container">
+                    <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+                        <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Просмотр учеников</strong></h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ФИО</th>
+                                        <th>ФИО родителей</th>
+                                        <th>Класс</th>
+                                        <th>День рождения</th>
+                                        <th>email</th>
+                                        <th>Персональный счет</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3"></div><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="updateTableStudent">Обновить</button>
+                    </form>
+                </div>
+            </section>
+            <section class="register-photo">
+                <div class="form-container">
+                    <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+                        <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Просмотр учителей</strong></h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ФИО</th>
+                                        <th>email</th>
+                                        <th>Специализация</th>
+                                        <th>Должность</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3"></div><button class="btn btn-primary d-block w-100" type="submit" data-bs-target="updateTableTeacher">Обновить</button>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

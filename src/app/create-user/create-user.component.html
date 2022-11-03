@@ -1,0 +1,93 @@
+<!--
+<h3>Create User</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input type="text" class="form-control" id="login" required [(ngModel)]="user.login" name="login">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input type="text" class="form-control" id="role" required [(ngModel)]="user.role" name="role">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>-->
+<!-- <button class="btn btn-success" (click)="newUser()">Add</button> -->
+<!--</div>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>RegPupil</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+<section class="register-photo">
+  <div class="form-container">
+    <form method="post" style="padding: 7px 60px;margin: 0;height: 658.4px;"> <!--NAME="form" (onSubmit)="onSubmit()"-->
+      <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Регистрация пользователя</strong></h2>
+      <div class="mb-3"></div>
+      <input class="form-control" type="email" id="name" required [(ngModel)]="userDTO.name" name="name" placeholder="Имя"
+             style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1"
+             maxlength="20"/>
+      <input class="form-control" type="email" id="lastname" [(ngModel)]="userDTO.lastname"
+             name="lastname" placeholder="Фамилия"
+             style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;"
+             minlength="1" maxlength="20" required/>
+      <input class="form-control" type="email"
+             id="patronymic"
+             [(ngModel)]="userDTO.patronymic" name="patronymic"
+             placeholder="Отчество"
+             style="margin-top: 19px;width: 349.0px;"
+             minlength="1" maxlength="20" required/><input
+      class="form-control" type="email" id="login" required [(ngModel)]="userDTO.login" name="login" placeholder="Логин"
+      style="margin-top: 19px;" minlength="1"
+      maxlength="25">
+      <input class="form-control" type="email" id="email" required [(ngModel)]="userDTO.email" name="email"
+             placeholder="Email (school_name@mail.ru)"
+             style="margin-top: 19px;" inputmode="email" minlength="9" maxlength="30">
+      <input
+      class="form-control" type="password" id="password" required [(ngModel)]="userDTO.password" name="password"
+      placeholder="Пароль" style="margin-top: 21px;" minlength="1"
+      maxlength="25">
+      <input class="form-control" type="password" id="repeatPassword" required
+             [(ngModel)]="repeatPassword" name="password-repeat" placeholder="Повторите пароль"
+             style="margin-top: 17px;" minlength="1" maxlength="25">
+      <div>
+        <input type="checkbox"
+               name="pupil" value="pupil"
+               style="margin-left: 0px;margin-top: 25px;"
+        [(ngModel)]="check"><small
+        class="form-text"></small><small style="margin-left: 5px;">Ученик</small>
+      </div>
+      <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registration" (click)="onSubmit()">Зарегистрироваться
+      </button>
+      <a class="already" href="signIn" style="padding: 5px;margin: 51px;" data-bs-target="autorization">У вас уже есть
+        аккаунт? Войдите в него.</a>
+    </form>
+  </div>
+</section>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>-->
+</div>
+</html>
