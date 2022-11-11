@@ -23,6 +23,7 @@ export class MenuDirectorComponent implements OnInit {
   teachers: Observable<Teacher[]>;
   teacher: Teacher = new Teacher();
   classrooms: Observable<ClassroomDTO[]>;
+  password;
 
   ngOnInit() {
     this.reloadData();
@@ -48,4 +49,7 @@ export class MenuDirectorComponent implements OnInit {
     this.router.navigate(['/main']);
   }
 
+  pass() {
+    this.password = this.teacherService.getChangePasswordInformation();
+  }
 }

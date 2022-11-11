@@ -39,7 +39,7 @@
         <li><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" href="editQuestion"
                data-bs-target="editQuestion"
                (click)="exit()"
-               style="font-size: 12px;width: 356.262px;">Question from users</a></li>
+               style="font-size: 12px;width: 356.262px;">{{password}}</a></li>
       </ul>
     </div>
   </div>
@@ -51,6 +51,10 @@
     <h2 class="font-weight-light mb-0">{{qualification}}</h2>
     <h2 class="font-weight-light mb-0">Директор</h2>
   </div>
+  <div><li><a class="nav-link text-center py-3 px-0 px-lg-3 rounded" href="changePassword"
+              data-bs-target="changePassword"
+              (click)="pass()"
+              style="font-size: 12px;width: 356.262px;">ChangePassword</a></li></div>
 </header>
 <section id="contact">
   <div class="container">

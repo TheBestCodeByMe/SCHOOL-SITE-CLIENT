@@ -38,4 +38,8 @@ export class TeacherService {
   getTeacherByUserId(userId: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/employee/getByUserId`, userId);
   }
+
+  getChangePasswordInformation(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/askQuestion/h`);
+  }
 }
