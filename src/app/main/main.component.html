@@ -6,28 +6,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Home - Brand</title>
   <link rel="stylesheet" href="main.component.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/2.2.1/json2html.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <!-- <script>
+     var countryApp = angular.module('countryApp', []);
+     countryApp.controller('CountryCtrl', function ($scope, $http) {
+       $http.get('countries.json').success(function (data) {
+         $scope.countries = data;
+       });
+     });
+   </script>
+   <script>
+     var countryApp1 = angular.module('countryApp1', []);
+     countryApp1.controller('CountryCtrl', function ($scope, $http){
+       $http.get("/ui").success(function(data) {
+         $scope.countries1 = data;
+       });
+     });
+   </script>-->
 </head>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
 <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-  <div class="container"><a class="navbar-brand" href="main">SCHOOL-In-your-smartfone</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+  <div class="container"><a class="navbar-brand" href="main">SCHOOL-In-your-smartfone</a>
+    <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right"
+            type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
+      class="fa fa-align-justify"></i></button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="aboutSite">Справка о сайте</a></li>
         <li class="nav-item"><a class="nav-link" href="employee">Сотрудники</a></li>
         <li class="nav-item"><a class="nav-link" href="add">Регистрация</a></li>
+        <li class="nav-item"><a class="nav-link" href="http://localhost:8080/api/v1/askQuestion/h3">Помощь</a></li>
       </ul>
     </div>
   </div>
 </nav>
 <header class="text-center text-white d-flex masthead">
- <!--style="background-image:url('/img/header.jpg');">-->
+  <!--style="background-image:url('/img/header.jpg');">-->
+  <!--<div>
+    var parsed = JSON.parse(example);
+
+    $.each(parsed, function(key, item) {
+    if (key == "image") {
+    $('#main').append('<img src="' + item + '" />');
+    }
+    if (key == "title") {
+    $('#main').append('<h1>' + item + '</h1>');
+    }
+    if (key == "paragraph") {
+    $('#main').append('<p>' + item + '</p>');
+    }
+    })
+  </div>-->
+  <!--<pre>
+<code>
+["layout":["type":"LinearLayout","layout_width":"match_parent","layout_height":"match_parent","background":"#0088FF","orientation":"vertical","children":[[
+  "type":"LinearLayout","layout_width":"400dp","layout_height":"200dp","background":"#00FF11","orientation":"vertical","layout_marginTop":"32dp","layout_gravity":"center","children":[["type":"TextView","layout_width":"match_parent","layout_height":"wrap_content","text":"@[username]","gravity":"center","textColor":"#ff0000","elevation":"4dp"},["type":"TextView","layout_width":"match_parent","layout_height":"wrap_content","text":"@[userlastname]","gravity":"center","textColor":"#ff0000","elevation":"4dp"]]]]],"layoutData":["username":"saurav","userlastname":"munankarmi"]]
+</code>
+</pre>-->
+  <!--<div>
+  <script>
+    let template = {'<>':'div','html':'${title} ${year}'};
+
+    let data = [
+      {"title":"Heat","year":"1995"},
+      {"title":"Snatch","year":"2000"},
+      {"title":"Up","year":"2009"},
+      {"title":"Unforgiven","year":"1992"},
+      {"title":"Amadeus","year":"1984"}
+    ];
+
+    //native javascript
+    document.write( json2html.render(data,template) );
+
+    //or with jQuery
+    $("#result").json2html(data,template);
+
+  </script>
+    </div>-->
   <div class="container my-auto">
     <div class="row">
       <div class="col-lg-10 mx-auto">
@@ -36,7 +93,9 @@
       </div>
     </div>
     <div class="col-lg-8 mx-auto">
-      <p class="text-faded mb-5">Здесь вы сможете ознакомиться с актуальными новостями, а также воспользоваться электронным журналом.</p><a class="btn btn-primary btn-xl" role="button" href="signIn">Войти в личный кабинет</a>
+      <p class="text-faded mb-5">Здесь вы сможете ознакомиться с актуальными новостями, а также воспользоваться
+        электронным журналом.</p><a class="btn btn-primary btn-xl" role="button" href="signIn">Войти в личный
+      кабинет</a>
     </div>
   </div>
 </header>
@@ -46,7 +105,31 @@
       <div class="col offset-lg-8 text-center mx-auto">
         <h2 class="text-white section-heading">Краткая информация о школе</h2>
         <hr class="light my-4">
-        <p class="text-start text-faded mb-4"><strong>Официальное наименование:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Государственное учреждение образования "Средняя школа №X г.ХХХ"<br><strong>Тип учреждения:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Учреждение общего среднего образования<br><strong>Населенный пункт:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Минск<br><strong>Адрес:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong>223710, Минск, ул.ХХХ, ХХХ<br><strong>Телефоны:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+375 174 23 66 17 (Директор)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375 174 23 66 28 (Секретарь)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375 174 23 66 12 (Заместитель директора по учебной работе)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375 174 23 69 09 (Заместитель директора по воспитательной работе)<br><strong>Email:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nashashool@mail.ru</p><a class="btn btn-light btn-xl" role="button" href="askQuestion">задать вопрос</a>
+        <p class="text-start text-faded mb-4"><strong>Официальное наименование:</strong>&nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; Государственное учреждение образования "Средняя школа №X г.ХХХ"<br><strong>Тип
+            учреждения:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Учреждение общего среднего
+          образования<br><strong>Населенный пункт:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Минск<br><strong>Адрес:&nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong>223710, Минск, ул.ХХХ, ХХХ<br><strong>Телефоны:</strong>&nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+375 174 23
+          66 17 (Директор)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375 174 23
+          66 28 (Секретарь)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375
+          174 23 66 12 (Заместитель директора по учебной работе)<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; +375 174 23 69 09 (Заместитель директора по воспитательной
+          работе)<br><strong>Email:</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nashashool@mail.ru</p><a
+        class="btn btn-light btn-xl" role="button" href="askQuestion">задать вопрос</a>
       </div>
     </div>
   </div>
@@ -63,25 +146,31 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-lg-3 text-center">
-        <div class="mx-auto service-box mt-5"><i class="fa fa-diamond fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+        <div class="mx-auto service-box mt-5"><i class="fa fa-diamond fa-4x text-primary mb-3 sr-icons"
+                                                 data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
           <h3 class="mb-3">Научись ценить мир</h3>
           <p class="text-muted mb-0">За подробностями обращаться к педагогу- организатору.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 text-center">
-        <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+        <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons"
+                                                 data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200"
+                                                 data-aos-once="true"></i>
           <h3 class="mb-3">Выпускной не за горами</h3>
           <p class="text-muted mb-0">Придумай свой танец/сценарий и принеси заявку педагогу-организатору.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 text-center">
-        <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+        <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons"
+                                                 data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400"
+                                                 data-aos-once="true"></i>
           <h3 class="mb-3">День роднай мовы</h3>
           <p class="text-muted mb-0">Напиши сочинение на тему "Мая радзiма Беларусь" и участвуй в конкурсе талантов.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 text-center">
-        <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+        <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade"
+                                                 data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
           <h3 class="mb-3">Безопасность - в каждый дом!</h3>
           <p class="text-muted mb-0">Мероприятие начнётся 9 июня.</p>
         </div>
@@ -106,19 +195,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
+      <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in"
+                                                   data-aos-duration="300" data-aos-once="true"></i>
         <p>123-456-6789</p>
       </div>
-      <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+      <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in"
+                                                   data-aos-duration="300" data-aos-delay="300"
+                                                   data-aos-once="true"></i>
         <p><a href="mailto:your-email@your-domain.com">nashaschool@mail.ru</a></p>
       </div>
     </div>
   </div>
-  <div>
-    <canvas id="myChart"></canvas>
-  </div>
 </section>
-<script>
+<!--<script>
   const ctx = document.getElementById('myChart').getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'bar',
@@ -154,14 +243,11 @@
       }
     }
   });
-</script>
+</script>-->
 <script src="js/bootstrap1.min.js"></script>
 <script src="js/bs-init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="js/creative.js"></script>
 </body>
-
-
-
 </html>

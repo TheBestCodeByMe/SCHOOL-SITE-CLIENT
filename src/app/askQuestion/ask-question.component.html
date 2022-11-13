@@ -14,6 +14,14 @@
   <div class="container"><a class="navbar-brand" href="askQuestion">Вопросы</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
     <div class="collapse navbar-collapse" id="navcol-1"></div>
   </div>
+  <!--<script>
+    var countryApp = angular.module('countryApp', []);
+    countryApp.controller('CountryCtrl', function ($scope, $http) {
+      $http.get('/api/v1/askQuestion/h').success(function (data) {
+        $scope.inf = data;
+      });
+    });
+  </script>-->
 </nav>
 <header class="text-center text-white masthead" > <!--style="background: url('assets/img/askQuestion.jpg');background-size: cover;">-->
   <div class="overlay"></div>
@@ -21,6 +29,9 @@
     <div class="row">
       <div class="col-xl-9 mx-auto position-relative">
         <h1 class="mb-5">Введите ваш вопрос. Он должен содержать не более 245 символов.</h1>
+      </div>
+      <div>
+        <h1>aaaaaaaa{{pass}}</h1>
       </div>
       <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
         <form>

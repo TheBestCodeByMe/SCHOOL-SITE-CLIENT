@@ -29,4 +29,9 @@ export class QuestionService {
   getQuestionsList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
+
+  getPass(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/h`);
+  }
+
 }

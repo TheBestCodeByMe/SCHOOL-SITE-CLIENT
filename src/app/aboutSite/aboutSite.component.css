@@ -369,10 +369,6 @@ legend + * {
   clear: left
 }
 
-::-webkit-datetime-edit-fields-wrapper, ::-webkit-datetime-edit-text, ::-webkit-datetime-edit-minute, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-year-field {
-  padding: 0
-}
-
 ::-webkit-inner-spin-button {
   height: auto
 }
@@ -624,7 +620,7 @@ progress {
 }
 
 .col {
-  flex: 1 0 0%
+  flex: 1 0 0
 }
 
 .row-cols-auto > * {
@@ -664,7 +660,7 @@ progress {
 
 @media (min-width: 576px) {
   .col-sm {
-    flex: 1 0 0%
+    flex: 1 0 0
   }
 
   .row-cols-sm-auto > * {
@@ -705,7 +701,7 @@ progress {
 
 @media (min-width: 768px) {
   .col-md {
-    flex: 1 0 0%
+    flex: 1 0 0
   }
 
   .row-cols-md-auto > * {
@@ -746,7 +742,7 @@ progress {
 
 @media (min-width: 992px) {
   .col-lg {
-    flex: 1 0 0%
+    flex: 1 0 0
   }
 
   .row-cols-lg-auto > * {
@@ -787,7 +783,7 @@ progress {
 
 @media (min-width: 1200px) {
   .col-xl {
-    flex: 1 0 0%
+    flex: 1 0 0
   }
 
   .row-cols-xl-auto > * {
@@ -828,7 +824,7 @@ progress {
 
 @media (min-width: 1400px) {
   .col-xxl {
-    flex: 1 0 0%
+    flex: 1 0 0
   }
 
   .row-cols-xxl-auto > * {
@@ -2321,11 +2317,6 @@ textarea.form-control-lg {
 
 .form-control-color:not(:disabled):not([readonly]) {
   cursor: pointer
-}
-
-.form-control-color::-moz-color-swatch {
-  height: 1.5em;
-  border-radius: .25rem
 }
 
 .form-control-color::-webkit-color-swatch {
@@ -4511,7 +4502,7 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem
+  padding: 0
 }
 
 .card-title {
@@ -4603,7 +4594,7 @@ textarea.form-control-lg {
   }
 
   .card-group > .card {
-    flex: 1 0 0%;
+    flex: 1 0 0;
     margin-bottom: 0
   }
 
@@ -4651,7 +4642,6 @@ textarea.form-control-lg {
   background-color: #fff;
   border: 0;
   border-radius: 0;
-  overflow-anchor: none;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease
 }
 

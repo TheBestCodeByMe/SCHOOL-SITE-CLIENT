@@ -32,12 +32,6 @@
   box-sizing: border-box
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth
-  }
-}
-
 header {
   background-image: url("src/app/main/img/header.jpg");
 }
@@ -364,10 +358,6 @@ legend {
 
 legend + * {
   clear: left
-}
-
-::-webkit-datetime-edit-fields-wrapper, ::-webkit-datetime-edit-text, ::-webkit-datetime-edit-minute, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-year-field {
-  padding: 0
 }
 
 ::-webkit-inner-spin-button {
@@ -2319,11 +2309,6 @@ textarea.form-control-lg {
 
 .form-control-color:not(:disabled):not([readonly]) {
   cursor: pointer
-}
-
-.form-control-color::-moz-color-swatch {
-  height: 1.5em;
-  border-radius: .25rem
 }
 
 .form-control-color::-webkit-color-swatch {
@@ -4509,7 +4494,6 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem
 }
 
 .card-title {
@@ -4649,7 +4633,6 @@ textarea.form-control-lg {
   background-color: #fff;
   border: 0;
   border-radius: 0;
-  overflow-anchor: none;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease
 }
 
@@ -4908,7 +4891,7 @@ textarea.form-control-lg {
 
 .alert {
   position: relative;
-  padding: 1rem 1rem;
+  padding: 0;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: .25rem
@@ -5055,7 +5038,7 @@ textarea.form-control-lg {
 
 .progress-bar-striped {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1rem 1rem
+  background-size: 0
 }
 
 .progress-bar-animated {
@@ -5649,7 +5632,7 @@ textarea.form-control-lg {
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px)
@@ -6139,7 +6122,7 @@ textarea.form-control-lg {
 }
 
 .popover-body {
-  padding: 1rem 1rem;
+  padding: 0;
   color: #212529
 }
 
@@ -6436,7 +6419,7 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem
+  padding: 0
 }
 
 .offcanvas-header .btn-close {
@@ -6453,7 +6436,7 @@ textarea.form-control-lg {
 
 .offcanvas-body {
   flex-grow: 1;
-  padding: 1rem 1rem;
+  padding: 0;
   overflow-y: auto
 }
 

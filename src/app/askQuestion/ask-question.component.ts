@@ -13,11 +13,21 @@ import {Question} from "../models/questions/question";
 export class AskQuestionComponent implements OnInit {
 
   question: Question = new Question();
+  pass;
 
   constructor(private questionService: QuestionService) {
   }
 
   ngOnInit() {
+      this.reloadData()
+  }
+
+  reloadData(){
+    console.log(this.pass+"dsdsdsd")
+    this.pass = "qwe"
+    console.log(this.pass)
+    this.questionService.getPass().subscribe(data=>this.pass=data)
+    console.log(this.pass)
   }
 
   addQuestion() {
