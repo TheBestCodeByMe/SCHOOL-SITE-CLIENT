@@ -129,10 +129,8 @@ p {
 }
 
 abbr[title], abbr[data-bs-original-title] {
-  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   cursor: help;
-  -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none
 }
 
@@ -211,8 +209,6 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 }
 
 pre, code, kbd, samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-family: var(--bs-font-monospace);
   font-size: 1em;
   direction: ltr /* rtl:ignore */;
   unicode-bidi: bidi-override
@@ -574,10 +570,6 @@ progress {
 
 .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
-  padding-right: 0.75rem;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: 0.75rem;
-  padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto
 }
@@ -1149,7 +1141,6 @@ progress {
   .g-sm-0, .gx-sm-0 {
     --bs-gutter-x: 0
   }
-
   .g-sm-0, .gy-sm-0 {
     --bs-gutter-y: 0
   }
@@ -2673,11 +2664,6 @@ textarea.form-control-lg {
   color: transparent
 }
 
-.form-floating > .form-control:not(:-moz-placeholder-shown) {
-  padding-top: 1.625rem;
-  padding-bottom: .625rem
-}
-
 .form-floating > .form-control:not(:-ms-input-placeholder) {
   padding-top: 1.625rem;
   padding-bottom: .625rem
@@ -2696,11 +2682,6 @@ textarea.form-control-lg {
 .form-floating > .form-select {
   padding-top: 1.625rem;
   padding-bottom: .625rem
-}
-
-.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
-  opacity: .65;
-  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem)
 }
 
 .form-floating > .form-control:not(:-ms-input-placeholder) ~ label {
@@ -4209,8 +4190,6 @@ textarea.form-control-lg {
 }
 
 .navbar-nav-scroll {
-  max-height: 75vh;
-  max-height: var(--bs-scroll-height, 75vh);
   overflow-y: auto
 }
 
@@ -4802,8 +4781,6 @@ textarea.form-control-lg {
   float: left;
   padding-right: .5rem;
   color: #6c757d;
-  content: "/";
-  content: var(--bs-breadcrumb-divider, "/") /* rtl: var(--bs-breadcrumb-divider, "/") */
 }
 
 .breadcrumb-item.active {
@@ -5549,7 +5526,6 @@ textarea.form-control-lg {
 }
 
 .toast-container {
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   max-width: 100%;
@@ -5918,8 +5894,6 @@ textarea.form-control-lg {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-family: var(--bs-font-sans-serif);
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6039,8 +6013,6 @@ textarea.form-control-lg {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-family: var(--bs-font-sans-serif);
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7681,11 +7653,6 @@ textarea.form-control-lg {
   padding-left: 3rem !important
 }
 
-.font-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-  font-family: var(--bs-font-monospace) !important
-}
-
 .fs-1 {
   font-size: calc(1.375rem + 1.5vw) !important
 }
@@ -7901,11 +7868,6 @@ textarea.form-control-lg {
 
 .bg-transparent {
   background-color: transparent !important
-}
-
-.bg-gradient {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0)) !important;
-  background-image: var(--bs-gradient) !important
 }
 
 .user-select-all {
@@ -11688,10 +11650,6 @@ header.masthead .post-heading .meta a {
 
 .form-floating .help-block {
   margin: 15px 0
-}
-
-.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
-  color: #0085a1
 }
 
 .form-floating > .form-control:not(:-ms-input-placeholder) ~ label {
