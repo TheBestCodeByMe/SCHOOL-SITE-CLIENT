@@ -10,7 +10,6 @@ import {Observable, take} from "rxjs";
   selector: 'app-main',
   templateUrl: './update-users.component.html',
   styleUrls: ['./update-users.component.css',
-    './assets/bootstrap/css/bootstrap.min.css',
     './assets/css/Registration-Form-with-Photo.css',
     './assets/css/styles.css'
   ]
