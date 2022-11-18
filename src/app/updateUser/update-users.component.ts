@@ -10,8 +10,8 @@ import {Observable, take} from "rxjs";
   selector: 'app-main',
   templateUrl: './update-users.component.html',
   styleUrls: ['./update-users.component.css',
-    './assets/css/UpU-Form-with-Photo.css',
-    './assets/css/styles.css'
+    './assetsUpdateUser/css/UpU-Form-with-Photo.css',
+    './assetsUpdateUser/css/styles.css'
   ]
 })
 export class UpdateUsersComponent implements OnInit {
