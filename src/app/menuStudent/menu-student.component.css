@@ -1,7 +1,7 @@
-.img1 {
+.img-fluid {
   /*background-image: url("cabin.png");*/
 }
 
 .imgSt {
-  background-image: url("assets/img/fone.jpg");
+  background-image: url("assetsMenuStudent/img/fone.jpg");
 }

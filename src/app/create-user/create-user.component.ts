@@ -11,9 +11,7 @@ import {AuthService} from "../auth/auth.service";
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css',
-    '/assets/bootstrap/css/bootstrap.min.css',
-    '/assets/css/Registration-Form-with-Photo.css',
-    '/assets/css/styles.css']
+    '/assetsReg/css/Registration-Form-with-Photo.css']
 })
 export class CreateUserComponent implements OnInit {
 

@@ -9,10 +9,10 @@ import {Router} from "@angular/router";
   selector: 'app-main',
   templateUrl: './edit-diary.component.html',
   styleUrls: ['./edit-diary.component.css',
-    './assets/fonts/font-awesome.min.css',
-    './assets/fonts/fontawesome-all.min.css',
-    './assets/fonts/fontawesome5-overrides.min.css',
-    './assets/bootstrap/css/bootstrap.min.css'
+    './assetsEditDiary/fonts/font-awesome.min.css',
+    './assetsEditDiary/fonts/fontawesome-all.min.css',
+    './assetsEditDiary/fonts/fontawesome5-overrides.min.css',
+    './assetsEditDiary/bootstrap/css/bootstrap.min.css'
   ]
 })
 export class EditDiaryComponent implements OnInit {

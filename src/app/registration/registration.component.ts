@@ -5,9 +5,9 @@ import {Component, OnInit} from '@angular/core';
   selector: 'app-main',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css',
-    './assets/bootstrap/css/bootstrap.min.css',
-    './assets/css/styles.css',
-    './assets/css/Registration-Form-with-Photo.css'
+    './assetsRegistrations/bootstrap/css/bootstrap.min.css',
+    './assetsRegistrations/css/styles.css',
+    './assetsRegistrations/css/Registration-Form-with-Photo.css'
   ]
 })
 export class RegistrationComponent implements OnInit {

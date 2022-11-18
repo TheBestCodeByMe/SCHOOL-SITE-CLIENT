@@ -24,9 +24,8 @@ import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
   selector: 'app-main',
   templateUrl: './edit-users.component.html',
   styleUrls: ['./edit-users.component.css',
-    './assets/bootstrap/css/bootstrap.min.css',
-    './assets/css/styles.css',
-    './assets/css/Registration-Form-with-Photo.css'
+    './assetsEditUsers/css/styles.css',
+    './assetsEditUsers/css/EU-Form-with-Photo.css'
   ]
 })
 export class EditUsersComponent implements OnInit {

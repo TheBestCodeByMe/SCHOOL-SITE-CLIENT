@@ -10,7 +10,7 @@ import {PupilDTOService} from "../models/pupilDTO/pupilDTO.service";
   selector: 'app-main',
   templateUrl: './analytic.component.html',
   styleUrls: ['./analytic.component.css',
-    'assets/bootstrap/css/bootstrap.min.css',
+    'assetsAnalytic/bootstrap/css/bootstrap.min.css',
   ]
 })
 export class AnalyticComponent implements OnInit {

@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
   selector: 'app-main',
   templateUrl: './menu-teacher.component.html',
   styleUrls: ['./menu-teacher.component.css',
-    './assets/bootstrap/css/bootstrap.min.css'
+    './assetsMenuTeacher/bootstrap/css/bootstrap.min.css'
   ]
 })
 export class MenuTeacherComponent implements OnInit {

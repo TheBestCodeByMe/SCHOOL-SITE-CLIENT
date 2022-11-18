@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   selector: 'app-main',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css',
-    './assets/bootstrap/css/bootstrap.min.css'
+    './assetsEmployee/bootstrap/css/bootstrap.min.css'
   ]
 })
 export class EmployeeComponent implements OnInit {

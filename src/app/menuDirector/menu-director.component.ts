@@ -12,7 +12,7 @@ import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
   selector: 'app-main',
   templateUrl: './menu-director.component.html',
   styleUrls: ['./menu-director.component.css',
-    './assets/bootstrap/css/bootstrap.min.css'
+    './assetsMenuDirector/bootstrap/css/bootstrap.min.css'
   ]
 })
 export class MenuDirectorComponent implements OnInit {
