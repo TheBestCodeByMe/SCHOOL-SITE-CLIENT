@@ -21,7 +21,6 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {SignInComponent} from "./signIn/sign-in.component";
 import {SheduleComponent} from "./shedule/shedule.component";
 
-
 const routes: Routes = [
 
   {path: '', redirectTo: 'user', pathMatch: 'full'},

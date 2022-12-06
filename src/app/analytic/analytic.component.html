@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="assetsAnalytic/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+<!--  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js" ></script>-->
+<!--  <script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>-->
+<!--  <script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script>-->
+<!--<script>angular.module ( 'myApp' , [ 'zingchart-angularjs' ]);-->
+<!--$scope.myJson = {-->
+<!--  type : 'line' ,-->
+<!--  series : [-->
+<!--    { values : [ 54 , 23 , 34 , 23 , 43 ] },-->
+<!--    { values : [ 10 , 15 , 16 , 20 , 40 ] }-->
+<!--  ]-->
+<!--};</script>-->
+<!--  <zingchart id = "myChart" zc-json = "myJson" zc-height = 500 zc-width = 600 ></zingchart>-->
 </head>
 
 <body id="page-top">
@@ -33,6 +45,7 @@
   </nav>
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
+<!--      <div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="568px"></div>-->
       <div class="container-fluid">
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
           <h3 class="text-dark mb-0">Доска для анализа данных</h3><a
@@ -92,6 +105,16 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [plugins]="pieChartPlugins"
+                  [legend]="pieChartLegend">
+          </canvas>
         </div>
         <div class="row">
           <div class="col-lg-6 mb-4">
