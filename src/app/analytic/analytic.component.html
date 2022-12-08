@@ -79,6 +79,7 @@
             </div>
           </div>
           <div>
+            <div class="row">
             <div class="col-md-6 col-xl-3 mb-4">
               <div class="card shadow border-start-warning py-2">
                 <div class="card-body">
@@ -92,32 +93,42 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-warning py-2">
-              <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                  <div class="col me-2">
-                    <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Класс</span></div>
-                    <div class="text-dark fw-bold h5 mb-0"><span>{{pupilDTO.className}}</span></div>
+            <div class="col-md-6 col-xl-3 mb-4">
+              <div class="card shadow border-start-warning py-2">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                      <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Класс</span></div>
+                      <div class="text-dark fw-bold h5 mb-0"><span>{{pupilDTO.className}}</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
         <div class="chart-wrapper">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  [options]="pieChartOptions"
-                  [plugins]="pieChartPlugins"
-                  [legend]="pieChartLegend">
-          </canvas>
+<!--          <canvas baseChart-->
+<!--                  [data]="pieChartData"-->
+<!--                  [labels]="pieChartLabels"-->
+<!--                  [chartType]="pieChartType"-->
+<!--                  [options]="pieChartOptions"-->
+<!--                  [plugins]="pieChartPlugins"-->
+<!--                  [legend]="pieChartLegend">-->
+<!--          </canvas>-->
+          <div class="row">
+            <div class="col-lg-6 mb-4">
+              <canvas baseChart [data]="data1" [type]="config1.type" [options]="config1.options"></canvas>
+              <canvas baseChart [data]="data2" [type]="config2.type"></canvas>
+            </div>
+            <div class="col-lg-6 mb-4">
+              <canvas baseChart [data]="data" [type]="config.type"></canvas>
+            </div>
+          </div>
+          <!--          <canvas id="can" width="200" height="200"></canvas>-->
         </div>
         <div class="row">
-          <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="text-primary fw-bold m-0">Пройденный материал</h6>
@@ -147,7 +158,6 @@
                 <div class="progress mb-4">
                   <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
                        style="width: 100%;"><span class="visually-hidden">100%</span></div>
-                </div>
               </div>
             </div>
             <div class="card shadow mb-4">

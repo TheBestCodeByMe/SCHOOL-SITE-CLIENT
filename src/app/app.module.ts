@@ -28,6 +28,7 @@ import {SheduleComponent} from "./shedule/shedule.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 
+
 @NgModule({
   declarations: [
     AppComponent,
