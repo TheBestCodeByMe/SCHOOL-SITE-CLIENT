@@ -9,7 +9,6 @@ import {UserListComponent} from './user-list/user-list.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {AlertModule} from "ngx-bootstrap/alert";
 import {MainComponent} from "./main/main.component";
 import {AboutSiteComponent} from "./aboutSite/aboutSite.component";
 import {AboutStudentComponent} from "./aboutStudent/aboutStudent.component";
@@ -26,6 +25,8 @@ import {MenuTeacherComponent} from "./menuTeacher/menu-teacher.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {SignInComponent} from "./signIn/sign-in.component";
 import {SheduleComponent} from "./shedule/shedule.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {SheduleComponent} from "./shedule/shedule.component";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AlertModule.forRoot()
+    NgbModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
