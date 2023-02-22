@@ -11,7 +11,7 @@ import {PupilService} from "../models/pupils/pupil.service";
 import {ParentsService} from "../models/parents/parents.service";
 import {Teacher} from "../models/teachers/teacher";
 import {TeacherService} from "../models/teachers/teacher.service";
-import {ClassroomService} from "../models/classrooms/classroom.service";
+import {ClassroomDTOSearchService} from "../models/classroomDTOSearch/classroomDTOSearch.service";
 import {Subject} from "../models/subjects/subject";
 import {SubjectService} from "../models/subjects/subject.service";
 import {SheduleDTO} from "../models/sheduleDTO/sheduleDTO";
@@ -54,7 +54,7 @@ export class EditUsersComponent implements OnInit {
               private pupilService: PupilService,
               private parentService: ParentsService,
               private teacherService: TeacherService,
-              private classroomService: ClassroomService,
+              private classroomService: ClassroomDTOSearchService,
               private subjectService: SubjectService,
               private sheduleDTOService: SheduleDTOService,
               private classroomDTOService: ClassroomDTOService,

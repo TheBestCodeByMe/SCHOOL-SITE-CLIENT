@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassroomService {
+export class ClassroomDTOSearchService {
   private baseUrl = 'http://localhost:8080/api/v1/users';
 
   constructor(private http: HttpClient) { }
@@ -22,8 +22,8 @@ export class ClassroomService {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
-  deleteClassroom(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  deleteClassroom(code: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${code}`, { responseType: 'text' });
   }
 
   getClassroomsList(): Observable<any> {

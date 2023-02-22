@@ -36,7 +36,7 @@ export class TeacherService {
   }
 
   getTeacherByUserId(userId: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/employee/getByUserId`, userId);
+    return this.http.get(`${this.baseUrl}/employee/getByUserId/${userId}`, {responseType: 'text'});
   }
 
   getChangePasswordInformation(): Observable<any> {

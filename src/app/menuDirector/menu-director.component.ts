@@ -37,8 +37,9 @@ export class MenuDirectorComponent implements OnInit {
   reloadData() {
     this.teacherService.getTeacherByUserId(this.tokenStorage.getIdUser())
       .subscribe(data => {
-        this.fioTeacher = data.name + " " + data.lastName + " " + data.patronymic;
-        this.qualification = data.qualification
+        this.teacher = data
+        this.fioTeacher = this.teacher.name + " " + this.teacher.lastName + " " + this.teacher.patronymic;
+        this.qualification = this.teacher.qualification
       });
    this.classrooms = this.classroomDTOService.getClassroomDTOsList();
   }

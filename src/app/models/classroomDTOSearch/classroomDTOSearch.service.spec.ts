@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import {ClassroomService} from "./classroom.service";
+import {ClassroomDTOSearchService} from "./classroomDTOSearch.service";
 
 describe('ClassroomService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ClassroomService = TestBed.get(ClassroomService);
+    const service: ClassroomDTOSearchService = TestBed.get(ClassroomDTOSearchService);
     expect(service).toBeTruthy();
   });
 });
