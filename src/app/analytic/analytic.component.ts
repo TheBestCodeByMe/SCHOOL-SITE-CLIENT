@@ -31,7 +31,7 @@ export class AnalyticComponent implements OnInit {
     ],
     datasets: [{
       label: 'Соотношение успеваемости в классе между учащимися',
-      data: [300, 50, 100, 90],
+      data: [10, 9, 7, 10],
       backgroundColor: [
         'rgb(255, 99, 132, 0.55)',
         'rgb(54, 162, 235, 0.55)',

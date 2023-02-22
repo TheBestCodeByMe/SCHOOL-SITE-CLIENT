@@ -1,6 +1,6 @@
 export class Question {
-  code: string;
+  //code: string;
   question: string;
-  response: string;
-  flag: boolean;
+  //response: string;
+  //flag: boolean;
 }

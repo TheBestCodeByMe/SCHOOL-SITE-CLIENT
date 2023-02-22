@@ -28,7 +28,8 @@
         <li class="nav-item"><a class="nav-link" href="menuTeacher"><i
           class="fas fa-user"></i><span>Личный кабинет</span></a></li>
         <li class="nav-item"></li>
-        <li class="nav-item"><a class="nav-link" (click)="exit()"><i class="far fa-user-circle"></i><span>Выход</span></a>
+        <li class="nav-item"><a class="nav-link" (click)="exit()"><i
+          class="far fa-user-circle"></i><span>Выход</span></a>
         </li>
         <li class="nav-item"></li>
       </ul>
@@ -40,62 +41,99 @@
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
           <h3 class="text-dark mb-0">Заполнение дневника</h3>
         </div>
-        <div class="row">
-          <div class="col">
-            <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите дату, на которую нужно выставить оценку
-              и домашнее задание.</p><input type="date" required [(ngModel)]="diaryDTO.dateLesson" name="dataForTable">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>ФИО ученика</th>
-                  <th>Предмет</th>
-                  <th>Отметка</th>
-                  <th>Был/не был</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><input type="text" placeholder="Введите ФИО ученика через пробел" required [(ngModel)]="fioPupil" name="fioPupil" minlength="1" maxlength="60"></td>
-                  <td><input type="text" placeholder="Введите предмет" required [(ngModel)]="diaryDTO.subject" name="subject" minlength="1" maxlength="60"></td>
-                  <td><input type="number" required [(ngModel)]="diaryDTO.grade" min="1" max="10"></td>
-                  <td><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked="" [(ngModel)]="diaryDTO.attendance"></td>
-                </tr>
-                <tr></tr>
-                </tbody>
-              </table>
-              <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;" (click)="addGradle()">Выставить оценку и пропуск</button>
+        <form (ngSubmit)="f.form.valid && addGradle()" #f="ngForm" novalidate>
+          <div class="row">
+            <div class="col">
+              <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите дату, на которую нужно выставить оценку
+                и домашнее задание.</p><input type="date" required [(ngModel)]="date"
+                                              name="dataForTable">
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>Класс</th>
-                  <th>Предмет</th>
-                  <th>Домашнее задание</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><input type="text" placeholder="Введите класс" required [(ngModel)]="diaryDTO.className" name="className" minlength="1" maxlength="60"></td>
-                  <td><input type="text" placeholder="Введите предмет" required [(ngModel)]="diaryDTO.subject" name="subject" minlength="1" maxlength="60"></td>
-                  <td><input type="text" required [(ngModel)]="diaryDTO.homework" name="homework" placeholder="Введите домашнее задание"></td>
+          <div class="row">
+            <div class="col">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ФИО ученика</th>
+                    <th>Предмет</th>
+                    <th>Отметка</th>
+                    <th>Был/не был</th>
                   </tr>
-                <tr></tr>
-                </tbody>
-              </table>
-              <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;" (click)="addHomework()">Выставить домашнее задание</button>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><input type="text" placeholder="Введите ФИО ученика через пробел" required
+                               [(ngModel)]="fioPupil" name="fioPupil" minlength="1" maxlength="60"
+                               pattern="([a-zA-Zа-яёА-ЯЁ]){1,20}(\\s)([a-zA-Zа-яёА-ЯЁ]){1,20}(\\s)([a-zA-Zа-яёА-ЯЁ]){1,20}">
+                    </td>
+                    <td><input type="text" placeholder="Введите предмет" required [(ngModel)]="diaryDTO.subject"
+                               name="subject" minlength="1" maxlength="20" pattern="([a-zA-Zа-яёА-ЯЁ]){1,20}"></td>
+                    <td><input type="number" required [(ngModel)]="diaryDTO.grade" name="grade" min="1" max="10"
+                               pattern="[0-10]"></td>
+                    <td><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked=""
+                                                                [(ngModel)]="diaryDTO.attendance"></td>
+                  </tr>
+                  <tr></tr>
+                  </tbody>
+                </table>
+                <div class="col-lg-5 offset-lg-0">
+                  <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;"
+                          (click)="addGradle()">Выставить оценку и пропуск
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <div *ngIf="s1==2; else unset" class="alert alert-warning">
+            Добавление предмета провалилось!<br/>{{errorMessage1}}
+          </div>
+          <ng-template #unset>
+            <div *ngIf="s1==3" class="alert alert-warning">
+              <p>Добавление прошло успешно</p>
+            </div>
+          </ng-template>
+        </form>
+        <form (ngSubmit)="f1.form.valid && addHomework()" #f1="ngForm" novalidate>
+          <div class="row">
+            <div class="col">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Класс</th>
+                    <th>Предмет</th>
+                    <th>Домашнее задание</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><input type="text" placeholder="Введите класс" required [(ngModel)]="diaryDTO.className"
+                               name="className" minlength="1" maxlength="60" pattern="[1-11](\\s)([a-zA-Zа-яёА-ЯЁ]){1}">
+                    </td>
+                    <td><input type="text" placeholder="Введите предмет" required [(ngModel)]="diaryDTO.subject"
+                               name="subject" minlength="1" maxlength="60" pattern="([a-zA-Zа-яёА-ЯЁ]){1,20}"></td>
+                    <td><input type="text" required [(ngModel)]="diaryDTO.homework" name="homework"
+                               placeholder="Введите домашнее задание" pattern="([a-zA-Zа-яёА-ЯЁ]){1,20}"></td>
+                  </tr>
+                  <tr></tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;"
+                        (click)="addHomework()">Выставить домашнее задание
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="s==2; else unset" class="alert alert-warning">
+            Добавление домашнего задания провалилось!<br/>{{errorMessage}}
+          </div>
+          <ng-template #unset>
+            <div *ngIf="s==3" class="alert alert-warning">
+            <p>Добавление прошло успешно</p>
+            </div>
+          </ng-template>
+        </form>
       </div>
     </div>
     <footer class="bg-white sticky-footer">

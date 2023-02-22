@@ -11,8 +11,8 @@ export class DiaryDTOService {
   constructor(private http: HttpClient) {
   }
 
-  createAttendanceAndAcademicPerfomance(attendance: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/addAttendanceAndAcademicPerfomance`, attendance);
+  createAttendanceAndAcademicPerfomance(attendance: Object, date: string): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/addAttendanceAndAcademicPerfomance/${date}`, attendance);
   }
 
   getDiaryPupil(userId: string): Observable<any> {

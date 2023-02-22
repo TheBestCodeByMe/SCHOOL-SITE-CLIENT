@@ -21,6 +21,13 @@ export class EditDiaryComponent implements OnInit {
   fioPupil;
   check;
   className;
+  errorMessage: Object = '';
+  errorMessage1: Object = '';
+  isPupilFailed = false;
+  isClassFailed = false;
+  s = 1;
+  s1 = 1;
+  date;
 
   ngOnInit() {
   }
@@ -38,8 +45,18 @@ export class EditDiaryComponent implements OnInit {
     this.diaryDTO.homework = "";
     this.diaryDTO.className = "";
 
-    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO)
-      .subscribe(data => console.log(data), error => console.log(error));
+    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO, this.date)
+      .subscribe(data => {
+        console.log(data);
+        this.isPupilFailed = false;
+        this.s1 = 3;
+        this.errorMessage1 = "";
+      }, error => {
+        console.log(error);
+        this.errorMessage1 = error.error;
+        this.isPupilFailed = true;
+        this.s1 = 2;
+      });
 
     this.diaryDTO = new DiaryDTO();
     this.fioPupil = "";
@@ -52,8 +69,16 @@ export class EditDiaryComponent implements OnInit {
     this.diaryDTO.grade = "";
     this.diaryDTO.attendance = false;
 
-    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO)
-      .subscribe(data => console.log(data), error => console.log(error));
+    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO, this.date)
+      .subscribe(data => {
+        console.log(data);
+        this.isClassFailed = false;
+        this.s = 3;
+      }, error => {
+        this.errorMessage = error.error;
+        this.isClassFailed = true;
+        this.s = 2;
+      });
 
     this.diaryDTO = new DiaryDTO();
   }

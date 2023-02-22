@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: LoginInfo;
+  isSignUpFailed = false;
 
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
@@ -57,7 +58,7 @@ export class SignInComponent implements OnInit {
         this.tokenStorage.saveAuthorities(data.roles);
         this.tokenStorage.saveIdUser(data.id.toString());
 
-        this.isLoginFailed = false;
+        this.isSignUpFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
 
@@ -73,8 +74,8 @@ export class SignInComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
-        this.isLoginFailed = true;
+        this.errorMessage = "Введены неверные данные! Проверьте логин и пароль, а после попробуйте снова :)"//error.error.message;
+        this.isSignUpFailed = true;
       }
     );
   }

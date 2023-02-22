@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {DiaryDTO} from "../models/diaryDTO/diaryDTO";
 import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";
+import {log} from "util";
+import {co} from "chart.js/dist/chunks/helpers.core";
 
 
 @Component({
@@ -22,6 +24,6 @@ export class AboutStudentComponent implements OnInit {
   }
 
   search() {
-   this.students = this.diaryDTOService.getInfoPupil(this.classForSearch);
+   this.students = this.diaryDTOService.getInfoPupil(this.classForSearch)
   }
 }

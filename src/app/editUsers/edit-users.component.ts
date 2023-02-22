@@ -18,6 +18,7 @@ import {SheduleDTO} from "../models/sheduleDTO/sheduleDTO";
 import {SheduleDTOService} from "../models/sheduleDTO/sheduleDTO.service";
 import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
+import {LoginInfo} from "../models/login-info/login-info";
 
 
 @Component({
@@ -44,6 +45,9 @@ export class EditUsersComponent implements OnInit {
   subject: Subject = new Subject();
   sheduleDTO: SheduleDTO = new SheduleDTO();
   loginForDel;
+
+  errorMessage = '';
+  isSignUpFailed = false;
 
   constructor(private userService: UserService,
               private pupilDTOService: PupilDTOService,
@@ -81,7 +85,12 @@ export class EditUsersComponent implements OnInit {
     // возвращает null, если не сохранено
     // сущность, если сохранено
     this.pupilDTOService.createPupilDTO(this.pupilDToForReg)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {console.log(data)
+        this.isSignUpFailed = false;
+        this.errorMessage = data.message}, error => {
+        console.log(error)
+    this.isSignUpFailed = true;
+      this.errorMessage = error.error});
 
     /*
     //this.parentForId = this.parentService.createParents(this.parents);
