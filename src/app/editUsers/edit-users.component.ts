@@ -44,7 +44,7 @@ export class EditUsersComponent implements OnInit {
   teacher: Teacher = new Teacher();
   classroomDTO: ClassroomDTO = new ClassroomDTO();
   subject: Subject = new Subject();
-  sheduleDTO: SheduleDTO = new SheduleDTO();
+  scheduleDTO: SheduleDTO = new SheduleDTO();
   loginForDel;
 
   errorMessage = '';
@@ -124,7 +124,8 @@ export class EditUsersComponent implements OnInit {
 
   createTeacher() {
     this.teacherService.createTeacher(this.teacher)
-      .subscribe(data => {console.log(data);
+      .subscribe(data => {
+        console.log(data);
         MainComponent.sendNotification('Учитель создан', {
             body: 'Учитель ' + this.teacher.name + ' ' + this.teacher.lastName + ' создан!',
             icon: 'icon.jpg',
@@ -132,37 +133,55 @@ export class EditUsersComponent implements OnInit {
           },
           'Операция выполнена');
         this.teacher = new Teacher();
-        }, error => {console.log(error);
+      }, error => {
+        console.log(error);
         MainComponent.sendNotification('Учитель не создан', {
             body: 'Ошибка при создании: ' + error.error.message + '!',
             icon: 'icon.jpg',
             dir: 'auto'
           },
-          'Операция не выполнена');});
+          'Операция не выполнена');
+      });
   }
 
   createSubject() {
-    // возвращает null, если не сохранено
-    // сущность, если сохранено
     this.subjectService.createSubject(this.subject)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {
+        console.log(data);
+        MainComponent.sendNotification('Предмет создан', {
+            body: 'Предмет ' + this.subject.name + ' создан!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        this.subject = new Subject();
+      }, error => {
+        console.log(error);
+        MainComponent.sendNotification('Предмет не создан', {
+            body: 'Ошибка при создании: ' + error.error.message + '!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
+      });
   }
 
   createSchedule() {
     const tempTeacher = this.fioTeacher.split(" ");
-    this.sheduleDTO.nameTeacher = tempTeacher[1];
-    this.sheduleDTO.lastnameTeacher = tempTeacher[0];
-    this.sheduleDTO.patronymicTeacher = tempTeacher[2];
+    this.scheduleDTO.nameTeacher = tempTeacher[1];
+    this.scheduleDTO.lastnameTeacher = tempTeacher[0];
+    this.scheduleDTO.patronymicTeacher = tempTeacher[2];
 
     // возвращает в имени предмета строку с комментарием ошибки, если что-то не так
     // возвращает сущность, если всё так
-    this.sheduleDTOService.createSheduleDTO(this.sheduleDTO)
+    this.sheduleDTOService.createSheduleDTO(this.scheduleDTO)
       .subscribe(data => {
         console.log(data);
 
-        this.sheduleDTO = new SheduleDTO()
-      }, error => {console.log(error.error.message);
-       });
+        this.scheduleDTO = new SheduleDTO()
+      }, error => {
+        console.log(error.error.message);
+      });
   }
 
   createClassNameWithTeacher() {

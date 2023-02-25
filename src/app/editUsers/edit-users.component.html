@@ -92,7 +92,7 @@
     <form method="post" style="padding: 7px 60px;margin: 0px;height: 286.4px;">
       <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Добавление новых предметов</strong></h2>
       <div class="mb-3"></div>
-      <input class="form-control" [(ngModel)]="subject.subjectName" type="text" name="subjectForAdd"
+      <input class="form-control" [(ngModel)]="subject.name" type="text" name="subjectForAdd"
              placeholder="Укажите предмет для добавления"
              style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"
              required>
@@ -107,22 +107,22 @@
     <form method="post" style="padding: 7px 60px;margin: 0px;height: 658.4px;">
       <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Расписание</strong></h2>
       <div class="mb-3"></div>
-      <input class="form-control" [(ngModel)]="sheduleDTO.classroomName" type="text" name="classForShedule"
+      <input class="form-control" [(ngModel)]="scheduleDTO.classroomName" type="text" name="classForShedule"
              placeholder="Введите класс в формате &quot;11 А&quot;"
              style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="3" maxlength="4"
              required>
       <input
-        class="form-control" [(ngModel)]="sheduleDTO.subjectName" type="text" name="subjectForShedule"
+        class="form-control" [(ngModel)]="scheduleDTO.subjectName" type="text" name="subjectForShedule"
         placeholder="Введите предмет"
         style="margin-top: 5px;width: 349.0px;" minlength="1" maxlength="20" required><small class="form-text">Введите
       дату
       занятия.</small>
-      <input class="form-control" [(ngModel)]="sheduleDTO.date" type="date" name="dateSubject" style="margin-top: 4px;"
+      <input class="form-control" [(ngModel)]="scheduleDTO.date" type="date" name="dateSubject" style="margin-top: 4px;"
              required>
-      <input class="form-control" [(ngModel)]="sheduleDTO.lessonNumber" type="number" name="lessonID" min="1" max="11"
+      <input class="form-control" [(ngModel)]="scheduleDTO.lessonNumber" type="number" name="lessonID" min="1" max="11"
              placeholder="Введите номер урока в расписании" style="margin-top: 12px;" required>
       <input
-        class="form-control" [(ngModel)]="sheduleDTO.weekDay" type="number" name="weekDay"
+        class="form-control" [(ngModel)]="scheduleDTO.weekDay" type="number" name="weekDay"
         placeholder="Введите день недели по счёту" min="1" max="6"
         style="margin-top: 11px;" required>
       <input class="form-control" [(ngModel)]="fioTeacher"
