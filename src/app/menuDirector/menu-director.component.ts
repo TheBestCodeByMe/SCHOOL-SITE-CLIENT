@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Teacher} from "../models/teachers/teacher";
 import {TeacherService} from "../models/teachers/teacher.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {Router} from "@angular/router";
 import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
-
 
 @Component({
   selector: 'app-main',
@@ -20,7 +19,7 @@ export class MenuDirectorComponent implements OnInit {
   fioTeacher;
   qualification;
   teachers: Observable<Teacher[]>;
-  teacher: Teacher = new Teacher();
+  receivedTeacher: Teacher | undefined;
   classrooms: Observable<ClassroomDTO[]>;
   password;
 
@@ -36,10 +35,11 @@ export class MenuDirectorComponent implements OnInit {
 
   reloadData() {
     this.teacherService.getTeacherByUserId(this.tokenStorage.getIdUser())
-      .subscribe(data => {
-        this.teacher = data
-        this.fioTeacher = this.teacher.name + " " + this.teacher.lastName + " " + this.teacher.patronymic;
-        this.qualification = this.teacher.qualification
+      .subscribe({
+        next:(data: any) => {this.receivedTeacher=data;
+          this.fioTeacher=this.receivedTeacher.name + " " + this.receivedTeacher.lastName + " " + this.receivedTeacher.patronymic;
+          this.qualification = this.receivedTeacher.qualification},
+        error: error => {console.log(error)}
       });
    this.classrooms = this.classroomDTOService.getClassroomDTOsList();
   }

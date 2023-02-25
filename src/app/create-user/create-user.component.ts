@@ -6,6 +6,7 @@ import {Pupil} from "../models/pupils/pupil";
 import {UserDTO} from "../models/userDTO/userDTO";
 import {UserDTOService} from "../models/userDTO/userDTO.service";
 import {AuthService} from "../auth/auth.service";
+import {MainComponent} from "../main/main.component";
 
 @Component({
   selector: 'app-create-user',
@@ -42,13 +43,12 @@ export class CreateUserComponent implements OnInit {
 
   // дописать, если такой найден, то создать
   save() {
-    console.log("Я зашёл в функцию save");
     if (this.check) {
       this.userDTO.role = ['pupil'];
     } else {
       this.userDTO.role = ['teacher'];
     }
-    this.userDTO.status = "unBlock";
+    this.userDTO.status = "ACTIVE";
 
     // возвращает в имени сущности строку с комментарием ошибки, если что-то не так
     // возвращает сущность, если всё так
@@ -58,18 +58,31 @@ export class CreateUserComponent implements OnInit {
    this.authService.signUp(this.userDTO).subscribe(
       data => {
         console.log(data);
+        MainComponent.sendNotification('Пользователь' + this.userDTO.login +' зарегистрирован', {
+            body: 'Все прошло успешно :)',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена')
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.userDTO = new UserDTO();
+        this.repeatPassword="";
       },
       error => {
         console.log(error);
         this.errorMessage = error.error.message;
+        MainComponent.sendNotification('Неверные данные', {
+          body: 'Введены неверные данные! Ошибка: '+ this.errorMessage,
+          icon: 'icon.jpg',
+          dir: 'auto'
+        },
+          'Операция не выполнена')
         this.isSignUpFailed = true;
       }
     );
 
-    this.userDTO = new UserDTO();
-    this.gotoMain();
+    //this.gotoMain();
   }
 
   onSubmit() {
@@ -79,6 +92,12 @@ export class CreateUserComponent implements OnInit {
     } else {
       console.log("Пароли не совпадают");
       this.errorMessage = "Пароли не совпадают";
+      MainComponent.sendNotification('Неверные данные', {
+          body: 'Введены неверные данные! Ошибка: '+ this.errorMessage,
+          icon: 'icon.jpg',
+          dir: 'auto'
+        },
+        'Операция не выполнена')
     }
   }
 

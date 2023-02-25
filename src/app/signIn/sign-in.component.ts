@@ -4,6 +4,7 @@ import {TokenStorageService} from "../auth/token-storage.service";
 import {LoginInfo} from "../models/login-info/login-info";
 import {Router} from "@angular/router";
 import {AskQuestionComponent} from "../askQuestion/ask-question.component";
+import {MainComponent} from "../main/main.component";
 
 
 @Component({
@@ -70,7 +71,7 @@ export class SignInComponent implements OnInit {
       error => {
         console.log(error);
         if(error!=null) {
-          this.sendNotification('Неверные данные', {
+          MainComponent.sendNotification('Неверные данные', {
               body: 'Введены неверные данные! Проверьте логин и пароль, а после попробуйте снова :)',
               icon: 'icon.jpg',
               dir: 'auto'
@@ -97,42 +98,5 @@ export class SignInComponent implements OnInit {
 
   gotoMenuDirector() {
     this.router.navigate(['/menuDirector']);
-  }
-
-
-  sendNotification(title, options, result) {
-// Проверим, поддерживает ли браузер HTML5 Notifications
-    if (!("Notification" in window)) {
-      alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
-    }
-
-// Проверим, есть ли права на отправку уведомлений
-    else if (Notification.permission === "granted") {
-// Если права есть, отправим уведомление
-      var notification = new Notification(title, options);
-
-      function clickFunc() {
-        alert(result);
-      }
-
-      notification.onclick = clickFunc;
-    }
-
-// Если прав нет, пытаемся их получить
-    else if (Notification.permission !== 'denied') {
-      Notification.requestPermission(function (permission) {
-// Если права успешно получены, отправляем уведомление
-        if (permission === "granted") {
-          var notification = new Notification(title, options);
-
-        } else {
-          alert('Вы запретили показывать уведомления'); // Юзер отклонил наш запрос на показ уведомлений
-        }
-      });
-    } else {
-// Пользователь ранее отклонил наш запрос на показ уведомлений
-// В этом месте мы можем, но не будем его беспокоить. Уважайте решения своих пользователей.
-    }
-
   }
 }
