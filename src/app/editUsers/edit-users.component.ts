@@ -19,6 +19,7 @@ import {SheduleDTOService} from "../models/sheduleDTO/sheduleDTO.service";
 import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
 import {LoginInfo} from "../models/login-info/login-info";
+import {MainComponent} from "../main/main.component";
 
 
 @Component({
@@ -85,12 +86,15 @@ export class EditUsersComponent implements OnInit {
     // возвращает null, если не сохранено
     // сущность, если сохранено
     this.pupilDTOService.createPupilDTO(this.pupilDToForReg)
-      .subscribe(data => {console.log(data)
+      .subscribe(data => {
+        console.log(data)
         this.isSignUpFailed = false;
-        this.errorMessage = data.message}, error => {
+        this.errorMessage = data.message
+      }, error => {
         console.log(error)
-    this.isSignUpFailed = true;
-      this.errorMessage = error.error});
+        this.isSignUpFailed = true;
+        this.errorMessage = error.error
+      });
 
     /*
     //this.parentForId = this.parentService.createParents(this.parents);
@@ -119,10 +123,22 @@ export class EditUsersComponent implements OnInit {
   }
 
   createTeacher() {
-    // возвращает null, если не сохранено
-    // сущность, если сохранено
     this.teacherService.createTeacher(this.teacher)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {console.log(data);
+        MainComponent.sendNotification('Учитель создан', {
+            body: 'Учитель ' + this.teacher.name + ' ' + this.teacher.lastName + ' создан!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        this.teacher = new Teacher();
+        }, error => {console.log(error);
+        MainComponent.sendNotification('Учитель не создан', {
+            body: 'Ошибка при создании: ' + error.error.message + '!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');});
   }
 
   createSubject() {
@@ -132,7 +148,7 @@ export class EditUsersComponent implements OnInit {
       .subscribe(data => console.log(data), error => console.log(error));
   }
 
-  createShedule() {
+  createSchedule() {
     const tempTeacher = this.fioTeacher.split(" ");
     this.sheduleDTO.nameTeacher = tempTeacher[1];
     this.sheduleDTO.lastnameTeacher = tempTeacher[0];
@@ -141,7 +157,12 @@ export class EditUsersComponent implements OnInit {
     // возвращает в имени предмета строку с комментарием ошибки, если что-то не так
     // возвращает сущность, если всё так
     this.sheduleDTOService.createSheduleDTO(this.sheduleDTO)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {
+        console.log(data);
+
+        this.sheduleDTO = new SheduleDTO()
+      }, error => {console.log(error.error.message);
+       });
   }
 
   createClassNameWithTeacher() {

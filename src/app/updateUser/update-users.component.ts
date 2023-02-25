@@ -26,10 +26,12 @@ export class UpdateUsersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadData()
   }
 
+  // TODO: проверить
   updateUser() {
-    if(this.userDTO.name!="" || this.userDTO.lastname!="" || this.userDTO.patronymic!="") {
+    if(this.userDTO.name!="" && this.userDTO.lastname!="" && this.userDTO.patronymic!="") {
       this.userServiceDTO.updateUserDTO(this.tokenStorage.getIdUser(), this.userDTO).subscribe(
         data => {
           console.log(data);
@@ -52,7 +54,7 @@ export class UpdateUsersComponent implements OnInit {
         }
       );
     } else {
-      MainComponent.sendNotification('Сначала выведите данные', {
+      MainComponent.sendNotification('Сначала введите данные', {
           body: 'Данные не отредактированы!',
           icon: 'icon.jpg',
           dir: 'auto'
