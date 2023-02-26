@@ -188,22 +188,77 @@ export class EditUsersComponent implements OnInit {
     // возвращает текст в имени класса, если такой класс уже есть или такого преподавателя нет
     // возвращает сущность, если всё так
     this.classroomDTOService.createClassroomDTO(this.classroomDTO)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {
+        console.log(data);
+        MainComponent.sendNotification('Предмет не создан', {
+            body: 'Класс ' + this.classroomDTO.name + ' создан!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        this.classroomDTO = new ClassroomDTO();
+      }, error => {
+        console.log(error);
+        MainComponent.sendNotification('Класс не создан', {
+            body: 'Ошибка при создании: ' + error.error.message + '!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
+      });
   }
 
-  // В следующих 3 методах вся информация возвращается текстом
   blockUser() {
     this.userService.blockUser(this.loginForDel)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {console.log(data);
+        MainComponent.sendNotification('Пользователь заблокирован', {
+            body: 'Пользователь ' + this.loginForDel + ' заблокирован!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        }, error => {console.log(error);
+        MainComponent.sendNotification('Пользователь не заблокирован', {
+            body: 'Ошибка при блокировке: логин введен неверно!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');});
   }
 
   unBlockUser() {
     this.userService.unblockUser(this.loginForDel)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {console.log(data);
+        MainComponent.sendNotification('Пользователь разблокирован', {
+            body: 'Пользователь ' + this.loginForDel + ' разблокирован!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');}, error => {console.log(error);
+        MainComponent.sendNotification('Пользователь не разблокирован', {
+            body: 'Ошибка при разблокировке: логин введен неверно!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');});
   }
 
   deleteUser() {
     this.userService.deleteUser(this.loginForDel)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {console.log(data);
+        MainComponent.sendNotification('Пользователь удален', {
+            body: 'Пользователь ' + this.loginForDel + ' удален!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');}, error => {
+        console.log(error);
+        MainComponent.sendNotification('Пользователь не удален', {
+            body: 'Ошибка при удалении: логин введен неверно!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
+      });
   }
 }
