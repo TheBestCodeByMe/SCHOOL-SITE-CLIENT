@@ -14,8 +14,8 @@ export class SheduleDTOService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createSheduleDTO(sheduleDTO: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/editUsers/createSheduleDTO`, sheduleDTO);
+  createSсheduleDTO(sсheduleDTO: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/editUsers/createScheduleDTO`, sсheduleDTO);
   }
 
   updateSheduleDTO(id: number, value: any): Observable<Object> {

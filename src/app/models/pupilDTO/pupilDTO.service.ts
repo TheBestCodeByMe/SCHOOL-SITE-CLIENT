@@ -31,6 +31,6 @@ export class PupilDTOService {
   }
 
   getPupilDTOByUserId(userId: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/pupil/getByUserId`, userId);
+    return this.http.get(`${this.baseUrl}/pupil/getByUserId/${userId}`);
   }
 }

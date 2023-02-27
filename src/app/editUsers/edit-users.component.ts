@@ -186,21 +186,29 @@ export class EditUsersComponent implements OnInit {
     this.scheduleDTO.lastnameTeacher = tempTeacher[0];
     this.scheduleDTO.patronymicTeacher = tempTeacher[2];
 
-    // возвращает в имени предмета строку с комментарием ошибки, если что-то не так
-    // возвращает сущность, если всё так
-    this.sheduleDTOService.createSheduleDTO(this.scheduleDTO)
+    this.sheduleDTOService.createSсheduleDTO(this.scheduleDTO)
       .subscribe(data => {
         console.log(data);
-
-        this.scheduleDTO = new SheduleDTO()
+        MainComponent.sendNotification('Расписание создано', {
+            body: 'Расписание на ' + this.scheduleDTO.date + ' для ' + this.scheduleDTO.classroomName + ' класса создано!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        this.scheduleDTO = new SheduleDTO();
+        this.fioTeacher = "";
       }, error => {
         console.log(error.error.message);
+        MainComponent.sendNotification('Расписание не создано', {
+            body: 'Ошибка при создании: ' + error.error.message + '!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
       });
   }
 
   createClassNameWithTeacher() {
-    // возвращает текст в имени класса, если такой класс уже есть или такого преподавателя нет
-    // возвращает сущность, если всё так
     this.classroomDTOService.createClassroomDTO(this.classroomDTO)
       .subscribe(data => {
         console.log(data);
