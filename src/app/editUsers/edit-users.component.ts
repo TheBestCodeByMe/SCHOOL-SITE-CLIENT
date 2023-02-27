@@ -89,11 +89,25 @@ export class EditUsersComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.isSignUpFailed = false;
-        this.errorMessage = data.message
+        MainComponent.sendNotification('Ученик создан', {
+            body: 'Ученик создан!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция выполнена');
+        this.pupilDToForReg = new PupilDTO();
+        this.fioMom = "";
+        this.fioDad = "";
       }, error => {
         console.log(error)
         this.isSignUpFailed = true;
-        this.errorMessage = error.error
+        this.errorMessage = error.error.message
+        MainComponent.sendNotification('Ученик не создан', {
+            body: 'Ошибка при создании: ' + error.error.message + '!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
       });
 
     /*
@@ -119,7 +133,7 @@ export class EditUsersComponent implements OnInit {
     //this.parentService.getParentsByFIO(this.parents)
     //  .subscribe(data => console.log(data), error => console.log(error));
 */
-    this.pupilDToForReg = new PupilDTO();
+
   }
 
   createTeacher() {
