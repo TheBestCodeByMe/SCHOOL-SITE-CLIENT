@@ -11,12 +11,12 @@ export class DiaryDTOService {
   constructor(private http: HttpClient) {
   }
 
-  createAttendanceAndAcademicPerfomance(attendance: Object, date: string): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/addAttendanceAndAcademicPerfomance/${date}`, attendance);
+  createAttendanceAndAcademicPerformance(attendance: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/addAttendanceAndAcademicPerformance`, attendance);
   }
 
   getDiaryPupil(userId: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/getByUserId`, userId);
+    return this.http.get(`${this.baseUrl}/getByUserId/${userId}`);
   }
 
   getInfoPupil(classForSearch: string): Observable<any> {
@@ -24,11 +24,11 @@ export class DiaryDTOService {
   }
 
   getAttendance(userId: string): Observable<string> {
-    return this.http.post(`${this.baseUrl}/getNumbAttendance`, userId, {responseType: "text"});
+    return this.http.get(`${this.baseUrl}/getNumbAttendance/${userId}`, {responseType: "text"});
   }
 
   getAverageGrade(userId: string): Observable<string> {
-    return this.http.post(`${this.baseUrl}/getAverageGrade`, userId, {responseType: "text"});
+    return this.http.get(`${this.baseUrl}/getAverageGrade/${userId}`, {responseType: "text"});
   }
 
   getSaveGrades(userId: string): Observable<any> {

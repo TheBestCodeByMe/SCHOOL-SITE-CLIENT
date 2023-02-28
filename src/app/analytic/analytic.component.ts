@@ -6,6 +6,7 @@ import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";
 import {PupilDTOService} from "../models/pupilDTO/pupilDTO.service";
 import {ChartType, ChartOptions} from 'chart.js';
 import {config} from "rxjs";
+import {MainComponent} from "../main/main.component";
 
 //import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 
@@ -146,6 +147,13 @@ export class AnalyticComponent implements OnInit {
     this.diaryDTOService.getSaveGrades(this.tokenStorage.getIdUser()).subscribe(data => {
       console.log(data);
     });
+
+    MainComponent.sendNotification('Успеваемость сохранена в файл', {
+        body: 'Сохранено!',
+        icon: 'icon.jpg',
+        dir: 'auto'
+      },
+      'Операция выполнена');
   }
 
   /*

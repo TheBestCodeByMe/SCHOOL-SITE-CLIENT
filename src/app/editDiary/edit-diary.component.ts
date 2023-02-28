@@ -3,6 +3,7 @@ import {DiaryDTO} from "../models/diaryDTO/diaryDTO";
 import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {Router} from "@angular/router";
+import {MainComponent} from "../main/main.component";
 
 
 @Component({
@@ -18,9 +19,9 @@ import {Router} from "@angular/router";
 export class EditDiaryComponent implements OnInit {
 
   diaryDTO: DiaryDTO = new DiaryDTO();
-  fioPupil;
+  fioPupil = "";
   check;
-  className;
+  className = "";
   errorMessage: Object = '';
   errorMessage1: Object = '';
   isPupilFailed = false;
@@ -38,28 +39,59 @@ export class EditDiaryComponent implements OnInit {
   }
 
   addGradle() {
-    const temp = this.fioPupil.split(" ");
-    this.diaryDTO.namePupil = temp[1];
-    this.diaryDTO.lastnamePupil = temp[0];
-    this.diaryDTO.patronymicPupil = temp[2];
-    this.diaryDTO.homework = "";
-    this.diaryDTO.className = "";
+    if (this.fioPupil != "" || (!this.diaryDTO.attendance || this.diaryDTO.grade != "") || this.diaryDTO.subject != "" || this.diaryDTO.dateLesson != "") {
+      const temp = this.fioPupil.split(" ");
+      this.diaryDTO.namePupil = temp[1];
+      this.diaryDTO.lastnamePupil = temp[0];
+      this.diaryDTO.patronymicPupil = temp[2];
+      this.diaryDTO.homework = "";
+      this.diaryDTO.className = "";
+      this.diaryDTO.dateLesson = this.date
 
-    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO, this.date)
-      .subscribe(data => {
-        console.log(data);
-        this.isPupilFailed = false;
-        this.s1 = 3;
-        this.errorMessage1 = "";
-      }, error => {
-        console.log(error);
-        this.errorMessage1 = error.error;
-        this.isPupilFailed = true;
-        this.s1 = 2;
-      });
-
-    this.diaryDTO = new DiaryDTO();
-    this.fioPupil = "";
+      this.diaryDTOService.createAttendanceAndAcademicPerformance(this.diaryDTO)
+        .subscribe(data => {
+          console.log(data);
+          this.isPupilFailed = false;
+          //this.s1 = 3;
+          //this.errorMessage1 = "";
+          MainComponent.sendNotification('Успеваемость выставлена', {
+              body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
+              icon: 'icon.jpg',
+              dir: 'auto'
+            },
+            'Операция выполнена');
+          this.diaryDTO = new DiaryDTO();
+          this.fioPupil = "";
+        }, error => {
+          console.log(error);
+          if (error.error.text != "Выставлено") {
+            MainComponent.sendNotification('Успеваемость не выставлена', {
+                body: 'Ошибка при создании: ' + error.error + '!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция не выполнена');
+          } else {
+            MainComponent.sendNotification('Успеваемость выставлена', {
+                body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция выполнена');
+            this.diaryDTO = new DiaryDTO();
+            this.fioPupil = "";
+          }
+          //this.isPupilFailed = true;
+          //this.s1 = 2;
+        });
+    } else {
+      MainComponent.sendNotification('Успеваемость не выставлена', {
+          body: 'Ошибка при создании: заполнены не все поля!',
+          icon: 'icon.jpg',
+          dir: 'auto'
+        },
+        'Операция не выполнена');
+    }
   }
 
   addHomework() {
@@ -69,18 +101,49 @@ export class EditDiaryComponent implements OnInit {
     this.diaryDTO.grade = "";
     this.diaryDTO.attendance = false;
 
-    this.diaryDTOService.createAttendanceAndAcademicPerfomance(this.diaryDTO, this.date)
-      .subscribe(data => {
-        console.log(data);
-        this.isClassFailed = false;
-        this.s = 3;
-      }, error => {
-        this.errorMessage = error.error;
-        this.isClassFailed = true;
-        this.s = 2;
-      });
-
-    this.diaryDTO = new DiaryDTO();
+    if (this.diaryDTO.subject == "" || this.diaryDTO.homework == "" || this.diaryDTO.className == "" || this.diaryDTO.dateLesson == "" || this.className == "") {
+      this.diaryDTO.dateLesson = this.date
+      this.diaryDTOService.createAttendanceAndAcademicPerformance(this.diaryDTO)
+        .subscribe(data => {
+          console.log(data);
+          //this.isClassFailed = false;
+          //this.s = 3;
+          MainComponent.sendNotification('Домашнее задание выставлено', {
+              body: '' + this.diaryDTO.className + ' выставлено домашнее задание: ' + this.diaryDTO.homework + '!',
+              icon: 'icon.jpg',
+              dir: 'auto'
+            },
+            'Операция выполнена');
+          this.diaryDTO = new DiaryDTO();
+        }, error => {
+          this.errorMessage = error.error;
+          //this.isClassFailed = true;
+          //this.s = 2;
+          if (error.error.text != "Выставлено") {
+            MainComponent.sendNotification('Домашнее задание не выставлено', {
+                body: 'Ошибка при создании: ' + error.error + '!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция не выполнена');
+          } else {
+            MainComponent.sendNotification('Домашнее задание выставлено', {
+                body: '' + this.diaryDTO.className + ' выставлено домашнее задание: ' + this.diaryDTO.homework + '!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция выполнена');
+            this.diaryDTO = new DiaryDTO();
+          }
+        });
+    } else {
+      MainComponent.sendNotification('Домашнее задание не выставлено', {
+          body: 'Ошибка при создании: заполнены не все поля!',
+          icon: 'icon.jpg',
+          dir: 'auto'
+        },
+        'Операция не выполнена');
+    }
   }
 
   exit() {
