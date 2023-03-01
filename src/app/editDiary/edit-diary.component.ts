@@ -13,7 +13,9 @@ import {MainComponent} from "../main/main.component";
     './assetsEditDiary/fonts/font-awesome.min.css',
     './assetsEditDiary/fonts/fontawesome-all.min.css',
     './assetsEditDiary/fonts/fontawesome5-overrides.min.css',
-    './assetsEditDiary/bootstrap/css/bootstrap.min.css'
+    './assetsEditDiary/bootstrap/css/bootstrap.min.css',
+    './editDiaryAssets/bootstrap/css/bootstrap.min.css',
+    './editDiaryAssets/fonts/fontawesome5-overrides.min.css'
   ]
 })
 export class EditDiaryComponent implements OnInit {
