@@ -4,6 +4,10 @@ import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {Router} from "@angular/router";
 import {MainComponent} from "../main/main.component";
+import {Observable} from "rxjs";
+import {Teacher} from "../models/teachers/teacher";
+import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
+import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
 
 
 @Component({
@@ -31,11 +35,23 @@ export class EditDiaryComponent implements OnInit {
   s = 1;
   s1 = 1;
   date;
+  classnames: Observable<ClassroomDTO[]>;
 
   ngOnInit() {
+    this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
+      this.classnames = data
+      const app = document.getElementById("classroom");
+      for (let i = 0; i < 100; i++) {
+        app.innerHTML = app.innerHTML + "<option>" + data[i].name + "</option>";
+      }
+    });
+/*    for (const appKey in this.classnames) {
+      app.innerHTML = app.innerHTML + "<option>" + appKey + "</option>";
+    }*/
   }
 
   constructor(private diaryDTOService: DiaryDTOService,
+              private classroomDTOService: ClassroomDTOService,
               private tokenStorage: TokenStorageService,
               private router: Router) {
   }

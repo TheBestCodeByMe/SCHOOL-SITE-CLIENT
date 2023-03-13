@@ -196,12 +196,10 @@
               <option value="14">This is item 3</option>
             </optgroup>
           </select>
-            <select name="classroom" value="null" required="" style="margin: 0px; margin-left: 7px">
-            <optgroup label="subject">
-              <option value="12" selected="">This is item 1</option>
-              <option value="13">This is item 2</option>
-              <option value="14">This is item 3</option>
-            </optgroup>
+            <select id="classroom" name="classroom" value="null" required="" style="margin: 0px; margin-left: 7px">
+            <!--<optgroup *ngFor="let classname of classnames | async" label="classroom">
+              <option value="{{classname.name}}">{{classname.name}}</option>
+            </optgroup>-->
           </select>
           </div>
         </div>
@@ -249,7 +247,7 @@
         <div class="text-center my-auto copyright"><span>Колосович Ульяна © Brand 2022</span></div>
       </div>
     </footer>
-  </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+  </div>
 </div>
 <script src="editDiaryAssets/bootstrap/js/bootstrap.min.js"></script>
 <script src="editDiaryAssets/js/theme.js"></script>
