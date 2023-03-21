@@ -41,13 +41,20 @@ export class EditDiaryComponent implements OnInit {
     this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
       this.classnames = data
       const app = document.getElementById("classroom");
-      for (let i = 0; i < 100; i++) {
-        app.innerHTML = app.innerHTML + "<option>" + data[i].name + "</option>";
+      for (let i = 0; i < data.length; i++) {
+        app.innerHTML = app.innerHTML + "<option value=" + data[i].name + ">" + data[i].name + "</option>";
       }
     });
-/*    for (const appKey in this.classnames) {
-      app.innerHTML = app.innerHTML + "<option>" + appKey + "</option>";
-    }*/
+    /*    for (const appKey in this.classnames) {
+          app.innerHTML = app.innerHTML + "<option>" + appKey + "</option>";
+        }*/
+  }
+
+  selectedTeam = '';
+
+  onSelected(value:string): void {
+    this.selectedTeam = value;
+    console.log(this.selectedTeam)
   }
 
   constructor(private diaryDTOService: DiaryDTOService,
