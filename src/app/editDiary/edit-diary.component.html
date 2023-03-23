@@ -196,11 +196,14 @@
               <option value="14">This is item 3</option>
             </optgroup>
           </select>
-            <select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
-            <!--<optgroup *ngFor="let classname of classnames | async" label="classroom">
+            <select [(ngModel)]="selectedValue">
+              <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
+            </select>
+            <!--<select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
+            <optgroup *ngFor="let classname of classnames | async" label="classroom">
               <option value="{{classname.name}}">{{classname.name}}</option>
-            </optgroup>-->
-          </select>
+            </optgroup>
+          </select>-->
           </div>
         </div>
         <div class="row">

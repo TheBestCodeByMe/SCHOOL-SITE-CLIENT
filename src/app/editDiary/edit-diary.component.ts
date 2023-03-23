@@ -40,10 +40,10 @@ export class EditDiaryComponent implements OnInit {
   ngOnInit() {
     this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
       this.classnames = data
-      const app = document.getElementById("classroom");
+      /*const app = document.getElementById("classroom");
       for (let i = 0; i < data.length; i++) {
         app.innerHTML = app.innerHTML + "<option value=" + data[i].name + ">" + data[i].name + "</option>";
-      }
+      }*/
     });
     /*    for (const appKey in this.classnames) {
           app.innerHTML = app.innerHTML + "<option>" + appKey + "</option>";
@@ -51,6 +51,7 @@ export class EditDiaryComponent implements OnInit {
   }
 
   selectedTeam = '';
+  selectedValue = '';
 
   onSelected(value:string): void {
     this.selectedTeam = value;
