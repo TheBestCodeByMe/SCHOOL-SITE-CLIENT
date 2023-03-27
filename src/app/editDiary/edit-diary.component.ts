@@ -8,6 +8,8 @@ import {Observable} from "rxjs";
 import {Teacher} from "../models/teachers/teacher";
 import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
+import {SubjectDTO} from "../models/subjectDTO/subjectDTO";
+import {SubjectDTOService} from "../models/subjectDTO/subjectDTO.service";
 
 
 @Component({
@@ -36,6 +38,14 @@ export class EditDiaryComponent implements OnInit {
   s1 = 1;
   date;
   classnames: Observable<ClassroomDTO[]>;
+  subjects: Observable<SubjectDTO[]>;
+
+  constructor(private diaryDTOService: DiaryDTOService,
+              private classroomDTOService: ClassroomDTOService,
+              private subjectDTOService: SubjectDTOService,
+              private tokenStorage: TokenStorageService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
@@ -48,20 +58,28 @@ export class EditDiaryComponent implements OnInit {
     /*    for (const appKey in this.classnames) {
           app.innerHTML = app.innerHTML + "<option>" + appKey + "</option>";
         }*/
+    this.subjectDTOService.getSubjects().subscribe(data => {
+      this.subjects = data
+    });
   }
 
   selectedTeam = '';
   selectedValue = '';
+  selectedTeamSubject = '';
+  selectedValueSubject = '';
 
-  onSelected(value:string): void {
-    this.selectedTeam = value;
+/*  searchClass(valueClass:string, valueSubject:string): void {
+    this.selectedTeam = valueClass;
     console.log(this.selectedTeam)
-  }
+    this.selectedTeamSubject = valueSubject;
+    console.log(this.selectedTeamSubject)
+  }*/
 
-  constructor(private diaryDTOService: DiaryDTOService,
-              private classroomDTOService: ClassroomDTOService,
-              private tokenStorage: TokenStorageService,
-              private router: Router) {
+  searchClass(): void {
+    this.selectedTeam = this.selectedValue;
+    console.log(this.selectedTeam)
+    this.selectedTeamSubject = this.selectedValueSubject;
+    console.log(this.selectedTeamSubject)
   }
 
   addGradle() {

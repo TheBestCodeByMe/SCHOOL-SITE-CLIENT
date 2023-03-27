@@ -186,19 +186,17 @@
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
           <h3 class="text-dark mb-0">Заполнение журнала</h3>
         </div>
+        <form (ngSubmit)="f.form.valid && searchClass()" #f="ngForm" novalidate>
         <div class="row">
           <div class="col offset-xl-0">
-            <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите класс и предмет</p><button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить</button>
-            <select name="subject" value="null" required="">
-            <optgroup label="subject">
-              <option value="12" selected="">This is item 1</option>
-              <option value="13">This is item 2</option>
-              <option value="14">This is item 3</option>
-            </optgroup>
+            <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите класс и предмет</p>
+           <select name="sub" [(ngModel)]="selectedValueSubject" required="">
+              <option *ngFor="let s of subjects" [ngValue]="s">{{s.name}}</option>
           </select>
-            <select [(ngModel)]="selectedValue">
+            <select name="class" [(ngModel)]="selectedValue" required="">
               <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
             </select>
+            <button (click)="searchClass()" class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить</button>
             <!--<select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
             <optgroup *ngFor="let classname of classnames | async" label="classroom">
               <option value="{{classname.name}}">{{classname.name}}</option>
@@ -206,6 +204,7 @@
           </select>-->
           </div>
         </div>
+        </form>
         <div class="row">
           <div class="col">
             <div class="table-responsive">
