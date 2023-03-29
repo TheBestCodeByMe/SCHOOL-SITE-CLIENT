@@ -196,7 +196,7 @@
             <select name="class" [(ngModel)]="selectedValue" required="">
               <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
             </select>
-            <button (click)="searchClass()" class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить</button>
+            <button (click)="searchClass()" class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Поиск</button>
             <!--<select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
             <optgroup *ngFor="let classname of classnames | async" label="classroom">
               <option value="{{classname.name}}">{{classname.name}}</option>
@@ -212,17 +212,17 @@
                 <thead>
                 <tr>
                   <th>ФИО ученика</th>
-                  <th>Дата<br>занятия</th>
+                  <th *ngFor="let scheduleDates of scheduleDates">{{scheduleDates.date}}</th>
                   <th>Средняя<br>отметка</th>
                   <th>Количество<br>пропусков</th>
                   <th>Четвертная<br>отметка</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>ФИО</td>
-                  <td><input type="number" min="1" max="10">
-                    <small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked=""></td>
+                <tr *ngFor="let pupil of pupils">
+                  <td>{{pupil.lastname}} {{pupil.name}}</td>
+                  <td *ngFor="let scheduleDates of scheduleDates"><input type="number" min="1" max="10">
+                    <br><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked=""></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -230,6 +230,7 @@
                 <tr></tr>
                 </tbody>
               </table>
+              <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить</button>
             </div>
             <div class="row">
               <div class="col">

@@ -10,6 +10,10 @@ import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
 import {SubjectDTO} from "../models/subjectDTO/subjectDTO";
 import {SubjectDTOService} from "../models/subjectDTO/subjectDTO.service";
+import {PupilInClassDTO} from "../models/pupilInClassDTO/pupilInClassDTO";
+import {PupilInClassDTOService} from "../models/pupilInClassDTO/pupilInClassDTO.service";
+import {ScheduleDatesDTOService} from "../models/scheduleDatesDTO/scheduleDatesDTO.service";
+import {ScheduleDatesDTO} from "../models/scheduleDatesDTO/scheduleDatesDTO";
 
 
 @Component({
@@ -39,10 +43,18 @@ export class EditDiaryComponent implements OnInit {
   date;
   classnames: Observable<ClassroomDTO[]>;
   subjects: Observable<SubjectDTO[]>;
+  pupils: Observable<PupilInClassDTO[]>;
+  selectedTeam: ClassroomDTO;
+  selectedValue: ClassroomDTO;
+  selectedTeamSubject: SubjectDTO;
+  selectedValueSubject: SubjectDTO;
+  scheduleDates: Observable<ScheduleDatesDTO[]>;
 
   constructor(private diaryDTOService: DiaryDTOService,
               private classroomDTOService: ClassroomDTOService,
               private subjectDTOService: SubjectDTOService,
+              private pupilDTOService: PupilInClassDTOService,
+              private scheduleDatesDTOService: ScheduleDatesDTOService,
               private tokenStorage: TokenStorageService,
               private router: Router) {
   }
@@ -63,11 +75,6 @@ export class EditDiaryComponent implements OnInit {
     });
   }
 
-  selectedTeam = '';
-  selectedValue = '';
-  selectedTeamSubject = '';
-  selectedValueSubject = '';
-
 /*  searchClass(valueClass:string, valueSubject:string): void {
     this.selectedTeam = valueClass;
     console.log(this.selectedTeam)
@@ -77,9 +84,17 @@ export class EditDiaryComponent implements OnInit {
 
   searchClass(): void {
     this.selectedTeam = this.selectedValue;
+    console.log(this.selectedValue)
     console.log(this.selectedTeam)
     this.selectedTeamSubject = this.selectedValueSubject;
     console.log(this.selectedTeamSubject)
+    this.pupilDTOService.getPupilsInClassDTO(this.selectedValue.name).subscribe(data => {
+      this.pupils = data
+    });
+    this.scheduleDatesDTOService.getScheduleDates(this.selectedValueSubject.code, this.selectedValue.name, this.tokenStorage.getIdUser(), '1').subscribe(data => {
+      this.scheduleDates = data;
+      console.log(data)
+    });
   }
 
   addGradle() {
