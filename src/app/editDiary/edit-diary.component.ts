@@ -14,6 +14,7 @@ import {PupilInClassDTO} from "../models/pupilInClassDTO/pupilInClassDTO";
 import {PupilInClassDTOService} from "../models/pupilInClassDTO/pupilInClassDTO.service";
 import {ScheduleDatesDTOService} from "../models/scheduleDatesDTO/scheduleDatesDTO.service";
 import {ScheduleDatesDTO} from "../models/scheduleDatesDTO/scheduleDatesDTO";
+import {DiaryBySubjectDTOService} from "../models/diaryBySubjectDTO/diaryBySubjectDTO.service";
 
 
 @Component({
@@ -55,6 +56,7 @@ export class EditDiaryComponent implements OnInit {
               private subjectDTOService: SubjectDTOService,
               private pupilDTOService: PupilInClassDTOService,
               private scheduleDatesDTOService: ScheduleDatesDTOService,
+              private diaryBySubjectDTOService: DiaryBySubjectDTOService,
               private tokenStorage: TokenStorageService,
               private router: Router) {
   }
@@ -93,6 +95,9 @@ export class EditDiaryComponent implements OnInit {
     });
     this.scheduleDatesDTOService.getScheduleDates(this.selectedValueSubject.code, this.selectedValue.name, this.tokenStorage.getIdUser(), '1').subscribe(data => {
       this.scheduleDates = data;
+      console.log(data)
+    });
+    this.diaryBySubjectDTOService.getDiaries(this.selectedValueSubject.code, this.selectedValue.name).subscribe(data => {
       console.log(data)
     });
   }
