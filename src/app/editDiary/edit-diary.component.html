@@ -219,9 +219,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let pupil of pupils">
+                <tr *ngFor="let pupil of pupils" >
                   <td>{{pupil.lastname}} {{pupil.name}}</td>
-                  <td *ngFor="let scheduleDates of scheduleDates"><input type="number" min="1" max="10">
+                  <td *ngFor="let scheduleDates of scheduleDates"><input *ngFor="let diary of diaryBySubjectDTOs.diaries" ng-if="diary.lastname==pupil.lastname" [value]="" type="number" min="1" max="10">
                     <br><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked=""></td>
                   <td></td>
                   <td></td>

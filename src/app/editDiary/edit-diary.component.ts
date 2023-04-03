@@ -15,6 +15,7 @@ import {PupilInClassDTOService} from "../models/pupilInClassDTO/pupilInClassDTO.
 import {ScheduleDatesDTOService} from "../models/scheduleDatesDTO/scheduleDatesDTO.service";
 import {ScheduleDatesDTO} from "../models/scheduleDatesDTO/scheduleDatesDTO";
 import {DiaryBySubjectDTOService} from "../models/diaryBySubjectDTO/diaryBySubjectDTO.service";
+import {DiaryBySubjectDTO} from "../models/diaryBySubjectDTO/diaryBySubjectDTO";
 
 
 @Component({
@@ -50,6 +51,7 @@ export class EditDiaryComponent implements OnInit {
   selectedTeamSubject: SubjectDTO;
   selectedValueSubject: SubjectDTO;
   scheduleDates: Observable<ScheduleDatesDTO[]>;
+  diaryBySubjectDTOs: DiaryBySubjectDTO;
 
   constructor(private diaryDTOService: DiaryDTOService,
               private classroomDTOService: ClassroomDTOService,
@@ -98,8 +100,10 @@ export class EditDiaryComponent implements OnInit {
       console.log(data)
     });
     this.diaryBySubjectDTOService.getDiaries(this.selectedValueSubject.code, this.selectedValue.name).subscribe(data => {
-      console.log(data)
+      console.log(data);
+      this.diaryBySubjectDTOs = data;
     });
+    console.log(this.diaryBySubjectDTOs)
   }
 
   addGradle() {
