@@ -58,6 +58,7 @@ export class EditDiaryComponent implements OnInit {
   diaryBySubjectDTOs: DiaryBySubjectDTO;
   flag = false;
   homework = "";
+  dateForHomework = "";
 
   constructor(private diaryDTOService: DiaryDTOService,
               private classroomDTOService: ClassroomDTOService,
@@ -111,6 +112,7 @@ export class EditDiaryComponent implements OnInit {
       this.flag = true
     });
     console.log(this.diaryBySubjectDTOs)
+    this.homework = ""
   }
 
   addGradle() {
@@ -176,8 +178,11 @@ export class EditDiaryComponent implements OnInit {
     this.diaryDTO.grade = "";
     this.diaryDTO.attendance = false;
 
-    if (this.diaryDTO.subject == "" || this.diaryDTO.homework == "" || this.diaryDTO.className == "" || this.diaryDTO.dateLesson == "" || this.className == "") {
-      this.diaryDTO.dateLesson = this.date
+    if (this.diaryDTO.homework != "" && this.dateForHomework != "") {
+      this.diaryDTO.subject = this.diaryBySubjectDTOs.subject
+      this.diaryDTO.className = this.diaryBySubjectDTOs.classname
+      this.diaryDTO.dateLesson = this.dateForHomework
+      this.diaryDTO.homework = this.homework
       this.diaryDTOService.createAttendanceAndAcademicPerformance(this.diaryDTO)
         .subscribe(data => {
           console.log(data);
@@ -190,6 +195,12 @@ export class EditDiaryComponent implements OnInit {
             },
             'Операция выполнена');
           this.diaryDTO = new DiaryDTO();
+          this.scheduleDatesDTOService.getScheduleDates(this.selectedValueSubject.code, this.selectedValue.name, this.tokenStorage.getIdUser(), '1').subscribe(data => {
+            this.scheduleDates = data;
+            console.log(data)
+          });
+          this.homework = ""
+          this.dateForHomework = ""
         }, error => {
           this.errorMessage = error.error;
           //this.isClassFailed = true;
@@ -224,6 +235,7 @@ export class EditDiaryComponent implements OnInit {
   public selectedOptionChanged(scheduleDatesDTO: ScheduleDatesDTO): void {
     console.log(scheduleDatesDTO);
     this.homework = scheduleDatesDTO.hometask
+    this.dateForHomework = scheduleDatesDTO.dateSchedule
   }
 
   exit() {
