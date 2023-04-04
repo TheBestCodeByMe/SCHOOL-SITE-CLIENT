@@ -1,5 +1,5 @@
 export class ScheduleDatesDTO {
-  date: string;
+  dateSchedule: string;
   semester: number;
   hometask: string;
   scheduleCode: string;

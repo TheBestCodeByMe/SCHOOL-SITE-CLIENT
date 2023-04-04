@@ -159,23 +159,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Dashboard - Brand</title>
   <link rel="stylesheet" href="editDiaryAssets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
   <link rel="stylesheet" href="editDiaryAssets/fonts/fontawesome5-overrides.min.css">
 </head>
 
 <body id="page-top">
 <div id="wrapper">
   <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-    <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+    <div class="container-fluid d-flex flex-column p-0"><a
+      class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="editDiary">
       <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
       <div class="sidebar-brand-text mx-3"><span>Заполнение<br>журнала</span></div>
     </a>
       <hr class="sidebar-divider my-0">
       <ul class="navbar-nav text-light" id="accordionSidebar">
-        <li class="nav-item"><a class="nav-link active" href="#dataAnalytics"><i class="fas fa-tachometer-alt"></i><span>Журнал</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="menuTeacher"><i class="fas fa-user"></i><span>Личный кабинет</span></a></li>
+        <li class="nav-item"><a class="nav-link active" href="editDiary"><i
+          class="fas fa-tachometer-alt"></i><span>Журнал</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="menuTeacher"><i
+          class="fas fa-user"></i><span>Личный кабинет</span></a></li>
         <li class="nav-item"></li>
-        <li class="nav-item"><a class="nav-link" href="main"><i class="far fa-user-circle"></i><span>Выход</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="main"><i class="far fa-user-circle"></i><span>Выход</span></a>
+        </li>
         <li class="nav-item"></li>
       </ul>
     </div>
@@ -187,27 +192,29 @@
           <h3 class="text-dark mb-0">Заполнение журнала</h3>
         </div>
         <form (ngSubmit)="f.form.valid && searchClass()" #f="ngForm" novalidate>
-        <div class="row">
-          <div class="col offset-xl-0">
-            <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите класс и предмет</p>
-           <select name="sub" [(ngModel)]="selectedValueSubject" required="">
-              <option *ngFor="let s of subjects" [ngValue]="s">{{s.name}}</option>
-          </select>
-            <select name="class" [(ngModel)]="selectedValue" required="">
-              <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
-            </select>
-            <button (click)="searchClass()" class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Поиск</button>
-            <!--<select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
-            <optgroup *ngFor="let classname of classnames | async" label="classroom">
-              <option value="{{classname.name}}">{{classname.name}}</option>
-            </optgroup>
-          </select>-->
+          <div class="row">
+            <div class="col offset-xl-0">
+              <p style="margin: -1px;width: 701.6px;padding: -7px;">Выберите класс и предмет</p>
+              <select name="sub" [(ngModel)]="selectedValueSubject" required="">
+                <option *ngFor="let s of subjects" [ngValue]="s">{{s.name}}</option>
+              </select>
+              <select name="class" [(ngModel)]="selectedValue" required="">
+                <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
+              </select>
+              <button (click)="searchClass()" class="btn btn-primary" type="button" data-bs-target="search"
+                      style="margin: 39px;">Поиск
+              </button>
+              <!--<select #teams (change)="onSelected(teams.value)" id="classroom" name="classroom" required="" style="margin: 0px; margin-left: 7px">
+              <optgroup *ngFor="let classname of classnames | async" label="classroom">
+                <option value="{{classname.name}}">{{classname.name}}</option>
+              </optgroup>
+            </select>-->
+            </div>
           </div>
-        </div>
         </form>
         <div class="row">
           <div class="col">
-            <div class="table-responsive">
+            <div class="table-responsive" *ngIf="flag">
               <table class="table">
                 <thead>
                 <tr>
@@ -219,38 +226,47 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let pupil of pupils" >
-                  <td>{{pupil.lastname}} {{pupil.name}}</td>
-                  <td *ngFor="let scheduleDates of scheduleDates"><input *ngFor="let diary of diaryBySubjectDTOs.diaries" ng-if="diary.lastname==pupil.lastname" [value]="" type="number" min="1" max="10">
-                    <br><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" checked=""></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <ng-container *ngFor="let d of diaryBySubjectDTOs.diaries">
+                <tr>
+                  <td>{{d.lastnamePupil}} {{d.namePupil}}</td>
+                  <td *ngFor="let diaryByPupil of d.diary"><input type="number" [(ngModel)]="diaryByPupil.grade" min="1" max="10">
+                  <br><small>Не был&nbsp;&nbsp;</small><input type="checkbox" name="attendance" [(ngModel)]="diaryByPupil.attendance" checked="">
+                  </td>
+                  <td>{{d.averageScore}}</td>
+                  <td>{{d.countAttendances}}</td>
+                  <td>{{d.semesterGrade}}</td>
                 </tr>
-                <tr></tr>
-                </tbody>
-              </table>
-              <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить</button>
-            </div>
-            <div class="row">
-              <div class="col">
-                <br><br>
-                <input type="date" name="dataForTable">
-                <pre></pre>
-                <input type="text" name="homework" placeholder="Введите домашнее задание">
-                <button class="btn btn-primary" type="button" data-bs-target="addHomework" style="margin: 39px;">Добавить домашнее задание</button>
-              </div>
+                </ng-container>
+            </tbody>
+            </table>
+            <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить
+            </button>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+              <br><br>
+              <select name="dat" [(ngModel)]="selectedValueDate" required="" (ngModelChange)="selectedOptionChanged($event)">
+                <option *ngFor="let s of scheduleDates" [ngValue]="s">{{s.dateSchedule}}</option>
+              </select>
+              <pre></pre>
+              <input name="hometask" type="text" placeholder="Введите домашнее задание" [(ngModel)]="homework">
+              <button class="btn btn-primary" type="button" data-bs-target="addHomework" style="margin: 39px;">Добавить
+                домашнее задание
+              </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="bg-white sticky-footer">
-      <div class="container my-auto">
-        <div class="text-center my-auto copyright"><span>Колосович Ульяна © Brand 2022</span></div>
-      </div>
-    </footer>
   </div>
+  <footer class="bg-white sticky-footer">
+    <div class="container my-auto">
+      <div class="text-center my-auto copyright"><span>Колосович Ульяна © Brand 2022</span></div>
+    </div>
+  </footer>
+</div>
 </div>
 <script src="editDiaryAssets/bootstrap/js/bootstrap.min.js"></script>
 <script src="editDiaryAssets/js/theme.js"></script>

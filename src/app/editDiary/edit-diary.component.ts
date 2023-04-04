@@ -16,6 +16,8 @@ import {ScheduleDatesDTOService} from "../models/scheduleDatesDTO/scheduleDatesD
 import {ScheduleDatesDTO} from "../models/scheduleDatesDTO/scheduleDatesDTO";
 import {DiaryBySubjectDTOService} from "../models/diaryBySubjectDTO/diaryBySubjectDTO.service";
 import {DiaryBySubjectDTO} from "../models/diaryBySubjectDTO/diaryBySubjectDTO";
+import {DiaryBySubjectDTOList} from "../models/diaryBySubjectDTO/diaryBySubjectDTOList";
+import {DiaryBySubjDTO} from "../models/diaryBySubjectDTO/diaryBySubjDTO";
 
 
 @Component({
@@ -46,12 +48,16 @@ export class EditDiaryComponent implements OnInit {
   classnames: Observable<ClassroomDTO[]>;
   subjects: Observable<SubjectDTO[]>;
   pupils: Observable<PupilInClassDTO[]>;
-  selectedTeam: ClassroomDTO;
-  selectedValue: ClassroomDTO;
-  selectedTeamSubject: SubjectDTO;
-  selectedValueSubject: SubjectDTO;
+  selectedTeam: ClassroomDTO = null;
+  selectedValue: ClassroomDTO = null;
+  selectedTeamSubject: SubjectDTO = null;
+  selectedValueSubject: SubjectDTO = null;
+  selectedTeamDate: ScheduleDatesDTO = null;
+  selectedValueDate: ScheduleDatesDTO = null;
   scheduleDates: Observable<ScheduleDatesDTO[]>;
   diaryBySubjectDTOs: DiaryBySubjectDTO;
+  flag = false;
+  homework = "";
 
   constructor(private diaryDTOService: DiaryDTOService,
               private classroomDTOService: ClassroomDTOService,
@@ -102,6 +108,7 @@ export class EditDiaryComponent implements OnInit {
     this.diaryBySubjectDTOService.getDiaries(this.selectedValueSubject.code, this.selectedValue.name).subscribe(data => {
       console.log(data);
       this.diaryBySubjectDTOs = data;
+      this.flag = true
     });
     console.log(this.diaryBySubjectDTOs)
   }
@@ -212,6 +219,11 @@ export class EditDiaryComponent implements OnInit {
         },
         'Операция не выполнена');
     }
+  }
+
+  public selectedOptionChanged(scheduleDatesDTO: ScheduleDatesDTO): void {
+    console.log(scheduleDatesDTO);
+    this.homework = scheduleDatesDTO.hometask
   }
 
   exit() {
