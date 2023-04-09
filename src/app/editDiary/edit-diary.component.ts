@@ -93,6 +93,8 @@ export class EditDiaryComponent implements OnInit {
     console.log(this.selectedTeamSubject)
   }*/
 
+  // TODO: add patterns and etc
+
   searchClass(): void {
     this.selectedTeam = this.selectedValue;
     console.log(this.selectedValue)
@@ -116,59 +118,61 @@ export class EditDiaryComponent implements OnInit {
   }
 
   addGradle() {
-    if (this.fioPupil != "" || (!this.diaryDTO.attendance || this.diaryDTO.grade != "") || this.diaryDTO.subject != "" || this.diaryDTO.dateLesson != "") {
-      const temp = this.fioPupil.split(" ");
-      this.diaryDTO.namePupil = temp[1];
-      this.diaryDTO.lastnamePupil = temp[0];
-      this.diaryDTO.patronymicPupil = temp[2];
-      this.diaryDTO.homework = "";
-      this.diaryDTO.className = "";
-      this.diaryDTO.dateLesson = this.date
-
-      this.diaryDTOService.createAttendanceAndAcademicPerformance(this.diaryDTO)
-        .subscribe(data => {
-          console.log(data);
-          this.isPupilFailed = false;
-          //this.s1 = 3;
-          //this.errorMessage1 = "";
-          MainComponent.sendNotification('Успеваемость выставлена', {
-              body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
-              icon: 'icon.jpg',
-              dir: 'auto'
-            },
-            'Операция выполнена');
-          this.diaryDTO = new DiaryDTO();
-          this.fioPupil = "";
-        }, error => {
-          console.log(error);
-          if (error.error.text != "Выставлено") {
-            MainComponent.sendNotification('Успеваемость не выставлена', {
-                body: 'Ошибка при создании: ' + error.error + '!',
-                icon: 'icon.jpg',
-                dir: 'auto'
-              },
-              'Операция не выполнена');
-          } else {
-            MainComponent.sendNotification('Успеваемость выставлена', {
-                body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
-                icon: 'icon.jpg',
-                dir: 'auto'
-              },
-              'Операция выполнена');
-            this.diaryDTO = new DiaryDTO();
-            this.fioPupil = "";
-          }
-          //this.isPupilFailed = true;
-          //this.s1 = 2;
-        });
-    } else {
-      MainComponent.sendNotification('Успеваемость не выставлена', {
-          body: 'Ошибка при создании: заполнены не все поля!',
-          icon: 'icon.jpg',
-          dir: 'auto'
-        },
-        'Операция не выполнена');
-    }
+    console.log("123123123123123123123")
+    console.log(this.diaryBySubjectDTOs)
+    // if (this.fioPupil != "" || (!this.diaryDTO.attendance || this.diaryDTO.grade != "") || this.diaryDTO.subject != "" || this.diaryDTO.dateLesson != "") {
+    //   const temp = this.fioPupil.split(" ");
+    //   this.diaryDTO.namePupil = temp[1];
+    //   this.diaryDTO.lastnamePupil = temp[0];
+    //   this.diaryDTO.patronymicPupil = temp[2];
+    //   this.diaryDTO.homework = "";
+    //   this.diaryDTO.className = "";
+    //   this.diaryDTO.dateLesson = this.date
+    //
+    //   this.diaryDTOService.createAttendanceAndAcademicPerformance(this.diaryDTO)
+    //     .subscribe(data => {
+    //       console.log(data);
+    //       this.isPupilFailed = false;
+    //       //this.s1 = 3;
+    //       //this.errorMessage1 = "";
+    //       MainComponent.sendNotification('Успеваемость выставлена', {
+    //           body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
+    //           icon: 'icon.jpg',
+    //           dir: 'auto'
+    //         },
+    //         'Операция выполнена');
+    //       this.diaryDTO = new DiaryDTO();
+    //       this.fioPupil = "";
+    //     }, error => {
+    //       console.log(error);
+    //       if (error.error.text != "Выставлено") {
+    //         MainComponent.sendNotification('Успеваемость не выставлена', {
+    //             body: 'Ошибка при создании: ' + error.error + '!',
+    //             icon: 'icon.jpg',
+    //             dir: 'auto'
+    //           },
+    //           'Операция не выполнена');
+    //       } else {
+    //         MainComponent.sendNotification('Успеваемость выставлена', {
+    //             body: 'Ученику ' + this.diaryDTO.namePupil + ' ' + this.diaryDTO.lastnamePupil + ' выставлена успеваемость!',
+    //             icon: 'icon.jpg',
+    //             dir: 'auto'
+    //           },
+    //           'Операция выполнена');
+    //         this.diaryDTO = new DiaryDTO();
+    //         this.fioPupil = "";
+    //       }
+    //       //this.isPupilFailed = true;
+    //       //this.s1 = 2;
+    //     });
+    // } else {
+    //   MainComponent.sendNotification('Успеваемость не выставлена', {
+    //       body: 'Ошибка при создании: заполнены не все поля!',
+    //       icon: 'icon.jpg',
+    //       dir: 'auto'
+    //     },
+    //     'Операция не выполнена');
+    // }
   }
 
   addHomework() {

@@ -214,7 +214,7 @@
                 <thead>
                 <tr>
                   <th>ФИО ученика</th>
-                  <th *ngFor="let scheduleDates of scheduleDates">{{scheduleDates.date}}</th>
+                  <th *ngFor="let scheduleDates of scheduleDates">{{scheduleDates.dateSchedule}}</th>
                   <th>Средняя<br>отметка</th>
                   <th>Количество<br>пропусков</th>
                   <th>Четвертная<br>отметка</th>
@@ -234,7 +234,7 @@
                 </ng-container>
             </tbody>
             </table>
-            <button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить
+            <button (click)="addGradle()" class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;">Выставить
             </button>
           </div>
           <div class="row">
