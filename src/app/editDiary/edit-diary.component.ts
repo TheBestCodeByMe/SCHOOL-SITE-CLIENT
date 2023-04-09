@@ -117,6 +117,7 @@ export class EditDiaryComponent implements OnInit {
     this.homework = ""
   }
 
+  // TODO: change обработку exceptions
   addGradle() {
     console.log("123123123123123123123")
     console.log(this.diaryBySubjectDTOs)

@@ -4,6 +4,7 @@ export class DiaryBySubjectDTOList {
   namePupil: string;
   lastnamePupil: string;
   patronymicPupil: string;
+  code: string;
   diary: DiaryBySubjDTO[];
   averageScore: number;
   countAttendances: number;
