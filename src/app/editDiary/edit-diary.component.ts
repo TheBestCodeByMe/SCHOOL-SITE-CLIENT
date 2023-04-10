@@ -86,12 +86,12 @@ export class EditDiaryComponent implements OnInit {
     });
   }
 
-/*  searchClass(valueClass:string, valueSubject:string): void {
-    this.selectedTeam = valueClass;
-    console.log(this.selectedTeam)
-    this.selectedTeamSubject = valueSubject;
-    console.log(this.selectedTeamSubject)
-  }*/
+  /*  searchClass(valueClass:string, valueSubject:string): void {
+      this.selectedTeam = valueClass;
+      console.log(this.selectedTeam)
+      this.selectedTeamSubject = valueSubject;
+      console.log(this.selectedTeamSubject)
+    }*/
 
   // TODO: add patterns and etc
 
@@ -119,9 +119,39 @@ export class EditDiaryComponent implements OnInit {
 
   // TODO: add teacherId in request (dates)
   // TODO: change обработку exceptions
+  // TODO: убрать 0, чтобы означало, что ее нет
   addGradle() {
     console.log("123123123123123123123")
     console.log(this.diaryBySubjectDTOs)
+    const regexp = new RegExp('^[0-9]{1}$|^10$');
+
+    if (this.diaryBySubjectDTOs.diaries.every(i => i.diary.every(d => regexp.test(d.grade)))) {
+      this.diaryBySubjectDTOService.saveDiaries(this.diaryBySubjectDTOs, this.tokenStorage.getIdUser())
+        .subscribe(data => {
+          console.log(data);
+          MainComponent.sendNotification('Успеваемость выставлена', {
+              body: 'Ученикам выставлена успеваемость!',
+              icon: 'icon.jpg',
+              dir: 'auto'
+            },
+            'Операция выполнена');
+        }, error => {
+          console.log(error);
+          MainComponent.sendNotification('Успеваемость не выставлена', {
+              body: 'Ошибка при создании: ' + error.error + '!',
+              icon: 'icon.jpg',
+              dir: 'auto'
+            },
+            'Операция не выполнена');
+        });
+    } else {
+      MainComponent.sendNotification('Успеваемость не выставлена', {
+          body: 'Ошибка при создании: оценки выставлены некорректно, проверьте, чтобы оценки были от 0 до 10! 0, если оценки нет',
+          icon: 'icon.jpg',
+          dir: 'auto'
+        },
+        'Операция не выполнена');
+    }
     // if (this.fioPupil != "" || (!this.diaryDTO.attendance || this.diaryDTO.grade != "") || this.diaryDTO.subject != "" || this.diaryDTO.dateLesson != "") {
     //   const temp = this.fioPupil.split(" ");
     //   this.diaryDTO.namePupil = temp[1];

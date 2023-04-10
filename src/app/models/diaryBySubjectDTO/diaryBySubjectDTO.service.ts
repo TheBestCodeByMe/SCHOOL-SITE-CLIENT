@@ -13,4 +13,8 @@ export class DiaryBySubjectDTOService {
   getDiaries(subject: string, classname: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/diary/getDiaries/${classname}/${subject}`);
   }
+
+  saveDiaries(diaries: object, userId: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/diary/saveGradebooks/${userId}`, diaries);
+  }
 }
