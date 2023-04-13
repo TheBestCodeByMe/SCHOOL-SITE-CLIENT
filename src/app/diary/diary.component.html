@@ -46,16 +46,21 @@
               <table class="table">
                 <thead>
                 <tr>
+                  <th>Дата урока</th>
                   <th>Предмет</th>
                   <th>Домашнее задание</th>
                   <th>Отметка</th>
+                  <th>Пропуск</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let diaryDTO of diaryDTOs | async">
+                  <td>{{diaryDTO.dateLesson}}</td>
                   <td>{{diaryDTO.subject}}</td>
                   <td>{{diaryDTO.homework}}</td>
                   <td>{{diaryDTO.grade}}</td>
+                  <td *ngIf="diaryDTO.attendance">не был</td>
+                  <td *ngIf="!diaryDTO.attendance"></td>
                 </tr>
                 <tr></tr>
                 </tbody>

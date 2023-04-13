@@ -37,6 +37,7 @@ export class DiaryComponent implements OnInit {
       .subscribe(data => {
         this.numberAttendance = data;
       });
+    console.log(this.diaryDTOs)
   }
 
   exit() {
