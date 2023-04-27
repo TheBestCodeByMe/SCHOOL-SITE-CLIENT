@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -8,7 +8,7 @@ import {UserDetailsComponent} from './user-details/user-details.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MainComponent} from "./main/main.component";
 import {AboutSiteComponent} from "./aboutSite/aboutSite.component";
 import {AboutStudentComponent} from "./aboutStudent/aboutStudent.component";
@@ -27,6 +27,11 @@ import {SignInComponent} from "./signIn/sign-in.component";
 import {SheduleComponent} from "./shedule/shedule.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -59,8 +64,16 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgChartsModule
+    NgChartsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,        // <----- import(must)
+    MatNativeDateModule,        // <----- import for date formating(optional)
+    FormsModule,
+    ReactiveFormsModule,         // <----- import for date formating adapted to more locales(optional)
+    MatInputModule,
+    BrowserAnimationsModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

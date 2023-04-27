@@ -5,7 +5,9 @@ import {TokenStorageService} from "../auth/token-storage.service";
 import {Router} from "@angular/router";
 import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";
 import {Observable} from "rxjs";
-
+import {SubjectDTO} from "../models/subjectDTO/subjectDTO";
+import {SubjectDTOService} from "../models/subjectDTO/subjectDTO.service";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-main',
@@ -21,6 +23,9 @@ export class DiaryComponent implements OnInit {
 
   diaryDTOs: Observable<DiaryDTO>;
   numberAttendance;
+  subjects: Observable<SubjectDTO[]>;
+  selectedTeamSubject: SubjectDTO = null;
+  selectedValueSubject: SubjectDTO = null;
 
   ngOnInit() {
     this.reloadData();
@@ -28,6 +33,7 @@ export class DiaryComponent implements OnInit {
 
   constructor(private diaryDTOService: DiaryDTOService,
               private tokenStorage: TokenStorageService,
+              private subjectDTOService: SubjectDTOService,
               private router: Router) {
   }
 
@@ -37,7 +43,27 @@ export class DiaryComponent implements OnInit {
       .subscribe(data => {
         this.numberAttendance = data;
       });
+    this.subjectDTOService.getSubjects().subscribe(data => {
+      this.subjects = data
+    });
     console.log(this.diaryDTOs)
+  }
+
+  public selectedOptionChanged(subject: SubjectDTO): void {
+    console.log(subject);
+    this.diaryDTOs = this.diaryDTOService.getDiaryPupilByParams(this.tokenStorage.getIdUser(), subject.code, false, 1)
+  }
+
+  public selectedOptionDateChanged(date: string): void {
+    console.log(date);
+    this.diaryDTOs = this.diaryDTOService.getDiaryPupilByParams(this.tokenStorage.getIdUser(), date, true, 1)
+  }
+
+  events: string[] = [];
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${type}: ${event.value}`);
+    this.diaryDTOs = this.diaryDTOService.getDiaryPupilByParams(this.tokenStorage.getIdUser(), event.value.toLocaleDateString(), true, 1)
   }
 
   exit() {

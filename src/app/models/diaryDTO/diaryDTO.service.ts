@@ -19,6 +19,10 @@ export class DiaryDTOService {
     return this.http.get(`${this.baseUrl}/getByUserId/${userId}`);
   }
 
+  getDiaryPupilByParams(userId: string, param: string, flag: boolean, sem: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/by/user-date-subject/get/${userId}/${param}/${flag}/${sem}`);
+  }
+
   getInfoPupil(classForSearch: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/getAllAboutPupil/${classForSearch}`);
   }
