@@ -39,24 +39,31 @@ export class DiaryComponent implements OnInit {
 
   reloadData() {
     this.diaryDTOs = this.diaryDTOService.getDiaryPupil(this.tokenStorage.getIdUser());
+    this.subjectDTOService.getSubjects().subscribe(data => {
+      this.subjects = data
+    });
+    this.reloadAttendanceAndSubject()
+    console.log(this.diaryDTOs)
+  }
+
+  reloadAttendanceAndSubject() {
     this.diaryDTOService.getAttendance(this.tokenStorage.getIdUser())
       .subscribe(data => {
         this.numberAttendance = data;
       });
-    this.subjectDTOService.getSubjects().subscribe(data => {
-      this.subjects = data
-    });
     console.log(this.diaryDTOs)
   }
 
   public selectedOptionChanged(subject: SubjectDTO): void {
     console.log(subject);
     this.diaryDTOs = this.diaryDTOService.getDiaryPupilByParams(this.tokenStorage.getIdUser(), subject.code, false, 1)
+    this.reloadAttendanceAndSubject()
   }
 
   public selectedOptionDateChanged(date: string): void {
     console.log(date);
     this.diaryDTOs = this.diaryDTOService.getDiaryPupilByParams(this.tokenStorage.getIdUser(), date, true, 1)
+    this.reloadAttendanceAndSubject()
   }
 
   events: string[] = [];

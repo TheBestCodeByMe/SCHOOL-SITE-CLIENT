@@ -152,6 +152,7 @@ export class EditDiaryComponent implements OnInit {
         },
         'Операция не выполнена');
     }
+    setTimeout(() => this.searchClass(), 1000);
     // if (this.fioPupil != "" || (!this.diaryDTO.attendance || this.diaryDTO.grade != "") || this.diaryDTO.subject != "" || this.diaryDTO.dateLesson != "") {
     //   const temp = this.fioPupil.split(" ");
     //   this.diaryDTO.namePupil = temp[1];

@@ -131,7 +131,7 @@ export class AnalyticComponent implements OnInit {
       .subscribe(data => {
         this.pupilDTO = data;
       });
-    this.diaryDTOService.getAverageGrade(this.tokenStorage.getIdUser())
+    this.diaryDTOService.getAverageGrade(this.tokenStorage.getIdUser(), 1)
       .subscribe(data => {
         this.averageGrade = data;
       });
