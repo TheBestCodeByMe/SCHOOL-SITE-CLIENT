@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DiaryDTO} from "../models/diaryDTO/diaryDTO";
-import {PupilDTOService} from "../models/pupilDTO/pupilDTO.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {Router} from "@angular/router";
 import {DiaryDTOService} from "../models/diaryDTO/diaryDTO.service";

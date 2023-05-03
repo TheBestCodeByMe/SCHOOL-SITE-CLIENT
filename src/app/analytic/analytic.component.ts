@@ -7,6 +7,8 @@ import {PupilDTOService} from "../models/pupilDTO/pupilDTO.service";
 import {ChartType, ChartOptions} from 'chart.js';
 import {config} from "rxjs";
 import {MainComponent} from "../main/main.component";
+import {AnalyticService} from "../models/analytic/analytic.service";
+import {Analytic} from "../models/analytic/analytic";
 
 //import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 
@@ -22,13 +24,14 @@ export class AnalyticComponent implements OnInit {
   numberAttendance;
   averageGrade;
   pupilDTO: PupilDTO = new PupilDTO;
+  analytic: Analytic;
 
   data = {
     labels: [
-      'Отличники',
-      'Хорошисты',
-      'Удовлетворительно',
-      'Неудовлетворительно'
+      'Количество отличных оценок',
+      'Количество хороших оценок',
+      'Количество удовлетворительных оценок',
+      'Количество неудовлетворительных оценок'
     ],
     datasets: [{
       label: 'Соотношение успеваемости в классе между учащимися',
@@ -111,6 +114,7 @@ export class AnalyticComponent implements OnInit {
   };
 
   constructor(private diaryDTOService: DiaryDTOService,
+              private analyticService: AnalyticService,
               private pupilDTOService: PupilDTOService,
               private tokenStorage: TokenStorageService,
               private router: Router) {
@@ -135,6 +139,91 @@ export class AnalyticComponent implements OnInit {
       .subscribe(data => {
         this.averageGrade = data;
       });
+    this.analyticService.getAnalytic(this.tokenStorage.getIdUser(), 1)
+      .subscribe( info => {
+        this.analytic = info
+
+        this.data = {
+          labels: [
+            'Количество отличных оценок',
+            'Количество хороших оценок',
+            'Количество удовлетворительных оценок',
+            'Количество неудовлетворительных оценок'
+          ],
+          datasets: [{
+            label: 'Соотношение оценок и в классе между учащимися',
+            data: [this.analytic.academicPerformanceInClassDTOList.filter(it => it.performance=="Отлично").pop().count, this.analytic.academicPerformanceInClassDTOList.filter(it => it.performance=="Хорошо").pop().count, this.analytic.academicPerformanceInClassDTOList.filter(it => it.performance=="Удовлетворительно").pop().count, this.analytic.academicPerformanceInClassDTOList.filter(it => it.performance=="Неудовлетворительно").pop().count],
+            backgroundColor: [
+              'rgb(255, 99, 132, 0.55)',
+              'rgb(54, 162, 235, 0.55)',
+              'rgb(255, 205, 86, 0.55)',
+              'rgba(72,236,236,0.55)'
+            ],
+            hoverOffset: 4
+          }]
+        };
+
+        //labels = Utils.months({count: 7});
+        this.data1 = {
+          labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
+          datasets: [{
+            label: 'Средний балл по месяцам',
+            data: [this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="September").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="October").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="November").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="December").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="January").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="February").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="March").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="April").pop().averageGrade,
+              this.analytic.academicPerformanceInMonthDTOList.filter(it => it.month=="May").pop().averageGrade],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 205, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(91, 213, 191, 0.2)',
+              'rgba(154, 235, 54, 0.2)',
+              'rgba(255, 102, 189, 0.2)',
+              'rgba(207, 201, 201, 0.2)'
+            ],
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(91, 213, 191)',
+              'rgba(154, 235, 54)',
+              'rgba(255, 102, 189)',
+              'rgba(207, 201, 201)'
+            ],
+            borderWidth: 1
+          }]
+        };
+
+        this.data2 = {
+          labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
+          datasets: [{
+            label: 'Количество пропусков',
+            data: [this.analytic.attendanceInMonthDTOList.filter(it => it.month=="September").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="October").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="November").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="December").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="January").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="February").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="March").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="April").pop().count,
+              this.analytic.attendanceInMonthDTOList.filter(it => it.month=="May").pop().count],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        };
+        });
   }
 
   exit() {
