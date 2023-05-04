@@ -113,7 +113,6 @@ export class EditDiaryComponent implements OnInit {
       this.diaryBySubjectDTOs = data;
       this.flag = true
     });
-    console.log(this.diaryBySubjectDTOs)
     this.homework = ""
   }
 
@@ -121,8 +120,6 @@ export class EditDiaryComponent implements OnInit {
   // TODO: change обработку exceptions
   // TODO: убрать 0, чтобы означало, что ее нет
   addGradle() {
-    console.log("123123123123123123123")
-    console.log(this.diaryBySubjectDTOs)
     const regexp = new RegExp('^[0-9]{1}$|^10$');
 
     if (this.diaryBySubjectDTOs.diaries.every(i => i.diary.every(d => regexp.test(d.grade)))) {

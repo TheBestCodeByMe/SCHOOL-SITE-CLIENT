@@ -25,11 +25,12 @@
       <input class="form-control" id="patronymic" required [(ngModel)]="pupilDToForReg.patronymic" type="text"
              name="patronymic" placeholder="Отчество"
              style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20">
-      <input class="form-control" id="classroomName" required [(ngModel)]="pupilDToForReg.className" type="text"
-             name="classroomName" placeholder="Класс в формате 11 А"
-             style="margin-top: 19px;width: 349.0px;" minlength="1" maxlength="20"><small
-      style="margin-top: 0px;margin-right: 0px;height: 0px;padding: 0px;width: 0px;">Введите дату рождения</small><input
-      class="form-control" id="dateOfBirthday" required [(ngModel)]="pupilDToForReg.dateOfBirthday" type="date"
+      <br>
+      Выберите класс
+      <select name="classroomName" [(ngModel)]="selectedValue" required="">
+        <option *ngFor="let c of classnames" [ngValue]="c" >{{c.name}}</option>
+      </select>
+      <input class="form-control" id="dateOfBirthday" required [(ngModel)]="pupilDToForReg.dateOfBirthday" type="date"
       style="margin-top: 17px;" name="dateOfBirth">
       <input class="form-control" id="personalCheck" required [(ngModel)]="pupilDToForReg.personalCheck" type="text"
              name="personalCheck"
@@ -96,6 +97,11 @@
              placeholder="Укажите предмет для добавления"
              style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"
              required>
+      <br>
+      Существующие предметы приведены в списке
+      <select name="sub" [(ngModel)]="selectedValueSubject" required="">
+        <option *ngFor="let s of subjects" [ngValue]="s">{{s.name}}</option>
+      </select>
       <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="addSubject" (click)="createSubject()">
         Добавить предмет
       </button>

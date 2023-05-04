@@ -20,6 +20,8 @@ import {ClassroomDTO} from "../models/classroomDTO/classroomDTO";
 import {ClassroomDTOService} from "../models/classroomDTO/classroomDTO.service";
 import {LoginInfo} from "../models/login-info/login-info";
 import {MainComponent} from "../main/main.component";
+import {SubjectDTO} from "../models/subjectDTO/subjectDTO";
+import {SubjectDTOService} from "../models/subjectDTO/subjectDTO.service";
 
 
 @Component({
@@ -46,6 +48,12 @@ export class EditUsersComponent implements OnInit {
   subject: Subject = new Subject();
   scheduleDTO: SheduleDTO = new SheduleDTO();
   loginForDel;
+  subjects: Observable<SubjectDTO[]>;
+  selectedTeamSubject: SubjectDTO = null;
+  selectedValueSubject: SubjectDTO = null;
+  classnames: Observable<ClassroomDTO[]>;
+  selectedTeam: ClassroomDTO = null;
+  selectedValue: ClassroomDTO = null;
 
   errorMessage = '';
   isSignUpFailed = false;
@@ -59,6 +67,7 @@ export class EditUsersComponent implements OnInit {
               private subjectService: SubjectService,
               private sheduleDTOService: SheduleDTOService,
               private classroomDTOService: ClassroomDTOService,
+              private subjectDTOService: SubjectDTOService,
               private router: Router) {
   }
 
@@ -69,6 +78,12 @@ export class EditUsersComponent implements OnInit {
   reloadData() {
     this.users = this.userService.getUsersList();
     this.pupilDTOs = this.pupilDTOService.getPupilDTOsList();
+    this.subjectDTOService.getSubjects().subscribe(data => {
+      this.subjects = data
+    });
+    this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
+      this.classnames = data
+    });
   }
 
   savePupil() {
@@ -80,6 +95,7 @@ export class EditUsersComponent implements OnInit {
     this.pupilDToForReg.nameDad = tempDad[0];
     this.pupilDToForReg.lastnameDad = tempDad[1];
     this.pupilDToForReg.patronymicDad = tempDad[2];
+    this.pupilDToForReg.className = this.selectedValue.name;
 
     this.pupilDToForReg.email = "";
 
