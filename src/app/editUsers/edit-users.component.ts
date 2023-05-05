@@ -54,6 +54,12 @@ export class EditUsersComponent implements OnInit {
   classnames: Observable<ClassroomDTO[]>;
   selectedTeam: ClassroomDTO = null;
   selectedValue: ClassroomDTO = null;
+  flag1 = true;
+  teachers: Observable<Teacher[]>;
+  selectedTeamTeacher: Teacher = null;
+  selectedValueTeacher: Teacher = null;
+  selectedTeamTeacherClass: Teacher = null;
+  selectedValueTeacherClass: Teacher = null;
 
   errorMessage = '';
   isSignUpFailed = false;
@@ -84,47 +90,78 @@ export class EditUsersComponent implements OnInit {
     this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
       this.classnames = data
     });
+    this.teacherService.getTeachersList().subscribe(data => {
+      this.teachers = data
+    });
   }
 
   savePupil() {
-    const tempMom = this.fioMom.split(" ");
-    this.pupilDToForReg.nameMom = tempMom[0];
-    this.pupilDToForReg.lastnameMom = tempMom[1];
-    this.pupilDToForReg.patronymicMom = tempMom[2];
-    const tempDad = this.fioDad.split(" ");
-    this.pupilDToForReg.nameDad = tempDad[0];
-    this.pupilDToForReg.lastnameDad = tempDad[1];
-    this.pupilDToForReg.patronymicDad = tempDad[2];
-    this.pupilDToForReg.className = this.selectedValue.name;
+      const regexp = new RegExp('^[А-Яа-я\\-]{1,20}\u0020[А-Яа-я\\-]{1,20}\u0020[А-Яа-я\\-]{1,20}$');
+      const pupil_pattern = new RegExp('^[А-Яа-я\\-]{1,20}$');
+      var flag = true;
 
-    this.pupilDToForReg.email = "";
-
-    // возвращает null, если не сохранено
-    // сущность, если сохранено
-    this.pupilDTOService.createPupilDTO(this.pupilDToForReg)
-      .subscribe(data => {
-        console.log(data)
-        this.isSignUpFailed = false;
-        MainComponent.sendNotification('Ученик создан', {
-            body: 'Ученик создан!',
-            icon: 'icon.jpg',
-            dir: 'auto'
-          },
-          'Операция выполнена');
-        this.pupilDToForReg = new PupilDTO();
-        this.fioMom = "";
-        this.fioDad = "";
-      }, error => {
-        console.log(error)
-        this.isSignUpFailed = true;
-        this.errorMessage = error.error.message
-        MainComponent.sendNotification('Ученик не создан', {
-            body: 'Ошибка при создании: ' + error.error.message + '!',
+      if (!regexp.test(this.fioMom) || !regexp.test(this.fioDad)) {
+        MainComponent.sendNotification('Ошибка в ФИО родителей', {
+            body: 'Ошибка при создании: ФИО родителей введено неверно, введите в формате - Фамилия Имя Отчество!',
             icon: 'icon.jpg',
             dir: 'auto'
           },
           'Операция не выполнена');
-      });
+        flag = false;
+      }
+
+      if (!pupil_pattern.test(this.pupilDToForReg.name) || !pupil_pattern.test(this.pupilDToForReg.lastname) || !pupil_pattern.test(this.pupilDToForReg.patronymic)) {
+        MainComponent.sendNotification('Ошибка в ФИО ученика', {
+            body: 'Ошибка при создании: ФИО ученика введено неверно!',
+            icon: 'icon.jpg',
+            dir: 'auto'
+          },
+          'Операция не выполнена');
+        flag = false;
+      }
+
+      console.log("987456321")
+
+      // возвращает null, если не сохранено
+      // сущность, если сохранено
+      if (flag) {
+        const tempMom = this.fioMom.split(" ");
+        this.pupilDToForReg.nameMom = tempMom[0];
+        this.pupilDToForReg.lastnameMom = tempMom[1];
+        this.pupilDToForReg.patronymicMom = tempMom[2];
+        const tempDad = this.fioDad.split(" ");
+        this.pupilDToForReg.nameDad = tempDad[0];
+        this.pupilDToForReg.lastnameDad = tempDad[1];
+        this.pupilDToForReg.patronymicDad = tempDad[2];
+        this.pupilDToForReg.className = this.selectedValue.name;
+
+        this.pupilDToForReg.email = "";
+
+        this.pupilDTOService.createPupilDTO(this.pupilDToForReg)
+          .subscribe(data => {
+            console.log(data)
+            this.isSignUpFailed = false;
+            MainComponent.sendNotification('Ученик создан', {
+                body: 'Ученик создан!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция выполнена');
+            this.pupilDToForReg = new PupilDTO();
+            this.fioMom = "";
+            this.fioDad = "";
+          }, error => {
+            console.log(error)
+            this.isSignUpFailed = true;
+            this.errorMessage = error.error.message
+            MainComponent.sendNotification('Ученик не создан', {
+                body: 'Ошибка при создании: ' + error.error.message + '!',
+                icon: 'icon.jpg',
+                dir: 'auto'
+              },
+              'Операция не выполнена');
+          });
+      }
 
     /*
     //this.parentForId = this.parentService.createParents(this.parents);
@@ -197,10 +234,11 @@ export class EditUsersComponent implements OnInit {
   }
 
   createSchedule() {
-    const tempTeacher = this.fioTeacher.split(" ");
-    this.scheduleDTO.nameTeacher = tempTeacher[1];
-    this.scheduleDTO.lastnameTeacher = tempTeacher[0];
-    this.scheduleDTO.patronymicTeacher = tempTeacher[2];
+    this.scheduleDTO.nameTeacher = this.selectedValueTeacher.name;
+    this.scheduleDTO.lastnameTeacher = this.selectedValueTeacher.lastName;
+    this.scheduleDTO.patronymicTeacher = this.selectedValueTeacher.patronymic;
+    this.scheduleDTO.classroomName = this.selectedValue.name;
+    this.scheduleDTO.subjectName = this.selectedValueSubject.name;
 
     this.sheduleDTOService.createSсheduleDTO(this.scheduleDTO)
       .subscribe(data => {
@@ -225,16 +263,23 @@ export class EditUsersComponent implements OnInit {
   }
 
   createClassNameWithTeacher() {
+    this.classroomDTO.classroomTeacherName = this.selectedValueTeacherClass.name;
+    this.classroomDTO.classroomTeacherLastname = this.selectedValueTeacherClass.lastName;
+    this.classroomDTO.classroomTeacherPatronymic = this.selectedValueTeacherClass.patronymic;
+
     this.classroomDTOService.createClassroomDTO(this.classroomDTO)
       .subscribe(data => {
         console.log(data);
-        MainComponent.sendNotification('Предмет не создан', {
+        MainComponent.sendNotification('Класс создан', {
             body: 'Класс ' + this.classroomDTO.name + ' создан!',
             icon: 'icon.jpg',
             dir: 'auto'
           },
           'Операция выполнена');
         this.classroomDTO = new ClassroomDTO();
+        this.classroomDTOService.getClassroomDTOsList().subscribe(data => {
+          this.classnames = data
+        });
       }, error => {
         console.log(error);
         MainComponent.sendNotification('Класс не создан', {

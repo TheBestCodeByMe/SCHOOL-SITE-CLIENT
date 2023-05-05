@@ -46,13 +46,9 @@
              name="txtFIODad"
              placeholder="Введите ФИО папы через пробел"
              minlength="3" maxlength="245">
-      <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationStudent"
-              (click)="savePupil()">Зарегистрировать
-        ученика
+      <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationStudent">Зарегистрировать ученика
       </button>
-      <div *ngIf="isSignUpFailed" class="alert alert-warning">
-        Ошибка ввода!<br/>{{errorMessage}}
-      </div>
+      <div *ngIf="isSignUpFailed" class="alert alert-warning">Ошибка ввода!<br/>{{errorMessage}}</div>
     </form>
   </div>
 </section>
@@ -110,19 +106,19 @@
 </section>
 <section class="register-photo">
   <div class="form-container">
-    <form method="post" style="padding: 7px 60px;margin: 0px;height: 658.4px;">
+    <form method="post" style="padding: 7px 60px;margin: 0px;height: 490.4px;">
       <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Расписание</strong></h2>
       <div class="mb-3"></div>
-      <input class="form-control" [(ngModel)]="scheduleDTO.classroomName" type="text" name="classForShedule"
-             placeholder="Введите класс в формате &quot;11 А&quot;"
-             style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="3" maxlength="4"
-             required>
-      <input
-        class="form-control" [(ngModel)]="scheduleDTO.subjectName" type="text" name="subjectForShedule"
-        placeholder="Введите предмет"
-        style="margin-top: 5px;width: 349.0px;" minlength="1" maxlength="20" required><small class="form-text">Введите
-      дату
-      занятия.</small>
+      Выберите класс
+      <select name="classForShedule" [(ngModel)]="selectedValue" required="">
+        <option *ngFor="let c of classnames" [ngValue]="c" >{{c.name}}</option>
+      </select>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Выберите предмет
+      <select name="sub" [(ngModel)]="selectedValueSubject" required="">
+        <option *ngFor="let s of subjects" [ngValue]="s">{{s.name}}</option>
+      </select>
+      <br><br>
+      Введите дату занятия
       <input class="form-control" [(ngModel)]="scheduleDTO.date" type="date" name="dateSubject" style="margin-top: 4px;"
              required>
       <input class="form-control" [(ngModel)]="scheduleDTO.lessonNumber" type="number" name="lessonID" min="1" max="11"
@@ -131,11 +127,11 @@
         class="form-control" [(ngModel)]="scheduleDTO.weekDay" type="number" name="weekDay"
         placeholder="Введите день недели по счёту" min="1" max="6"
         style="margin-top: 11px;" required>
-      <input class="form-control" [(ngModel)]="fioTeacher"
-             type="text"
-             style="margin-top: 14px;"
-             placeholder="Введите ФИО преподавателя через пробел"
-             name="FIOTeacherForShedule" required>
+      <br>
+      Выберите учителя
+      <select name="FIOTeacherForShedule" [(ngModel)]="selectedValueTeacher" required="">
+        <option *ngFor="let t of teachers" [ngValue]="t">{{t.name}} {{t.lastName}} {{t.patronymic}}</option>
+      </select>
       <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="addShedule" (click)="createSchedule()">
         Добавление расписания
       </button>
@@ -144,22 +140,15 @@
 </section>
 <section class="register-photo">
   <div class="form-container">
-    <form method="post" style="padding: 7px 60px;margin: 0px;height: 464.4px;">
+    <form method="post" style="padding: 7px 60px;margin: 0px;height: 324.4px;">
       <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Регистрация классов и закрепление
         преподавателей за ними</strong></h2>
       <div class="mb-3"></div>
-      <input class="form-control" [(ngModel)]="classroomDTO.classroomTeacherName" type="text" name="classForRegistrationForClass" placeholder="Имя преподавателя"
-             style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1"
-             maxlength="20" required>
-      <input class="form-control" [(ngModel)]="classroomDTO.classroomTeacherLastname" type="text" name="lastnameTeacherForClass"
-             placeholder="Фамилия преподавателя"
-             style="width: 349px;margin-top: -51px;margin-left: 420px;margin-right: 0px;"
-             minlength="1" maxlength="20" required>
-      <input class="form-control" [(ngModel)]="classroomDTO.classroomTeacherPatronymic" type="text"
-             name="patronymicTeacherForClass"
-             placeholder="Отчество преподавателя"
-             style="margin-top: 19px;width: 349.0px;"
-             minlength="1" maxlength="20" required>
+      <br>
+      Выберите учителя
+      <select name="FIOTeacherForClassroom" [(ngModel)]="selectedValueTeacherClass" required="">
+        <option *ngFor="let t of teachers" [ngValue]="t">{{t.name}} {{t.lastName}} {{t.patronymic}}</option>
+      </select>
       <input class="form-control" [(ngModel)]="classroomDTO.name" type="text" name="classForAdd" style="margin-top: 19px;" minlength="1" maxlength="25"
       placeholder="Введите класс в формате &quot;11 А&quot;" required>
       <button class="btn btn-primary d-block w-100" type="submit" data-bs-target="registrationClass" (click)="createClassNameWithTeacher()">Зарегистрировать
