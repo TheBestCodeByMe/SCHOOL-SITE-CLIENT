@@ -187,12 +187,21 @@
           <tr>
             <th>Логин пользователя</th>
             <th>Статус</th>
+            <!--<th>Вы можете выбрать функцию</th>-->
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let user of users | async">
             <td>{{user.login}}</td>
             <td>{{user.status}}</td>
+            <!--<td> <button class="btn btn-primary d-block h-25 w-200" style="margin: 0 0 0 10px; font-size: 1.0vw" type="submit" data-bs-target="blockUser" (click)="blockUser()">Заблокировать
+              пользователя
+            </button>
+              <button class="btn btn-primary d-block h-25 w-200" style="margin: 0 0 0 0; font-size: 1.0vw" type="submit" data-bs-target="unblockUser" (click)="unBlockUser()">Разблокировать
+                пользователя
+              </button>
+              <button class="btn btn-primary d-block h-25 w-200" style="margin: 0 0 0 0; font-size: 1.0vw" type="submit" data-bs-target="deleteUser" (click)="deleteUser()">Удалить пользователя
+              </button></td>-->
           </tr>
           </tbody>
         </table>

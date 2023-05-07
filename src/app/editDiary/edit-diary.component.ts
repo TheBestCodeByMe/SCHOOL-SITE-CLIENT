@@ -108,7 +108,7 @@ export class EditDiaryComponent implements OnInit {
       this.scheduleDates = data;
       console.log(data)
     });
-    this.diaryBySubjectDTOService.getDiaries(this.selectedValueSubject.code, this.selectedValue.name).subscribe(data => {
+    this.diaryBySubjectDTOService.getDiaries(this.selectedValueSubject.code, this.selectedValue.name, this.tokenStorage.getIdUser(), 1).subscribe(data => {
       console.log(data);
       this.diaryBySubjectDTOs = data;
       this.flag = true

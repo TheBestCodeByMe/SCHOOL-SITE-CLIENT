@@ -30,7 +30,10 @@
         </div>
         <div class="row">
           <div class="col">
-            <p style="margin: -1px;width: 701.6px;padding: -7px;"></p><input type="text" [(ngModel)]="classForSearch" name="nameClass" placeholder="Введите класс в формате &quot;11 А&quot;" style="width: 253.6px;" minlength="3" maxlength="4"><button class="btn btn-primary" type="button" data-bs-target="search" style="margin: 39px;" (click)="search()">Поиск</button>
+            Выберите класс
+            <select name="nameClass" [(ngModel)]="selectedValueClass" required="" (ngModelChange)="selectedOptionChanged($event)">
+              <option *ngFor="let c of classnames" [ngValue]="c">{{c.name}}</option>
+            </select>
           </div>
         </div>
         <div class="row">

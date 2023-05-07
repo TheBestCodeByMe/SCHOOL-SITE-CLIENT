@@ -10,8 +10,8 @@ export class DiaryBySubjectDTOService {
 
   constructor(private http: HttpClient) { }
 
-  getDiaries(subject: string, classname: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/diary/getDiaries/${classname}/${subject}`);
+  getDiaries(subject: string, classname: string, userId: string, sem: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/diary/getDiaries/${classname}/${subject}/${userId}/${sem}`);
   }
 
   saveDiaries(diaries: object, userId: string): Observable<any> {
