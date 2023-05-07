@@ -70,7 +70,7 @@
              minlength="1" maxlength="20" required>
       <input class="form-control" [(ngModel)]="teacher.qualification" type="text"
              style="padding-top: 6px;margin-top: 13px;padding-left: 12px;"
-             name="txtQualification" placeholder="Введите квалификацию преподавателя"
+             name="txtQualification" placeholder="Введите квалификацию преподавателя: учитель математики, учитель русского языка и литературы"
              minlength="3" maxlength="245" required>
       <input class="form-control" [(ngModel)]="teacher.position" type="text"
              style="margin-top: 18px;"
@@ -86,11 +86,11 @@
 </section>
 <section class="register-photo">
   <div class="form-container">
-    <form method="post" style="padding: 7px 60px;margin: 0px;height: 286.4px;">
+    <form method="post" style="padding: 7px 60px;margin: 0px;height: 315.4px;">
       <h2 class="text-center" style="margin: 24px;padding: -52px;"><strong>Добавление новых предметов</strong></h2>
       <div class="mb-3"></div>
-      <input class="form-control" [(ngModel)]="subject.name" type="text" name="subjectForAdd"
-             placeholder="Укажите предмет для добавления"
+      <input class="form-control w-75" [(ngModel)]="subject.name" type="text" name="subjectForAdd"
+             placeholder="Укажите предмет для добавления с маленькой буквы"
              style="width: 349px;margin: 0px;padding: 14px 12px;margin-bottom: 12px;" minlength="1" maxlength="20"
              required>
       <br>
@@ -209,6 +209,9 @@
       <div class="mb-3"></div>
       <button (click)="reloadData()" class="btn btn-primary d-block w-100" type="submit"
               data-bs-target="updateTableUser">Вывести всех активных пользователей
+      </button>
+      <button (click)="getAllUsers()" class="btn btn-primary d-block w-100" type="submit"
+              data-bs-target="updateTableUser">Вывести всех пользователей
       </button>
     </form>
   </div>

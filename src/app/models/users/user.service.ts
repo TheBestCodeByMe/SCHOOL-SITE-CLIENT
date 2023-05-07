@@ -38,4 +38,7 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/users`);
   }
 
+  getAllUsersList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/all/users/get`);
+  }
 }
